@@ -1,4 +1,3 @@
-exports.articleData = require('./articles.js');
-exports.commentData = require('./comments.js');
-exports.topicData = require('./topics.js');
-exports.userData = require('./users.js');
+exports.userData = require("./users.js");
+exports.storeData = require("./stores.js");
+exports.reviewData = require("./reviews.js");

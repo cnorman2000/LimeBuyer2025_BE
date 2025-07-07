@@ -1,24 +1,32 @@
 module.exports = [
   {
-    username: "butter_bridge",
-    name: "jonny",
+    uid: 1,
+    username: "LemonLover1977",
     avatar_url:
       "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg",
   },
   {
-    username: "icellusedkars",
-    name: "sam",
-    avatar_url: "https://avatars2.githubusercontent.com/u/24604688?s=460&v=4",
-  },
-  {
-    username: "rogersop",
-    name: "paul",
-    avatar_url: "https://avatars2.githubusercontent.com/u/24394918?s=400&v=4",
-  },
-  {
-    username: "lurker",
-    name: "do_nothing",
+    uid: 2,
+    username: "FruitWizard",
     avatar_url:
-      "https://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user.png",
+      "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg",
+  },
+  {
+    uid: 3,
+    username: "NotBigFruit",
+    avatar_url:
+      "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg",
+  },
+  {
+    uid: 4,
+    username: "TheMandarinMagnate",
+    avatar_url:
+      "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg",
+  },
+  {
+    uid: 5,
+    username: "TheLemonGrab",
+    avatar_url:
+      "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg",
   },
 ];

@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS nc_news;
-CREATE DATABASE nc_news;
+DROP DATABASE IF EXISTS lime_buyer;
+CREATE DATABASE lime_buyer;
 
-DROP DATABASE IF EXISTS nc_news_test;
-CREATE DATABASE nc_news_test;
+DROP DATABASE IF EXISTS lime_buyer_test;
+CREATE DATABASE lime_buyer_test;
