@@ -66,6 +66,20 @@ const seed = ({ userData, storeData, reviewData }) => {
         formattedStoresValue
       );
       return db.query(sqlStoresString);
+    })
+
+    .then(() => {
+      const formattedReviewsValue = reviewData.map(
+        ({ review_id, fruit, rating, store, author }) => {
+          return [review_id, fruit, rating, store, author];
+        }
+      );
+
+      const sqlReviewsString = format(
+        `INSERT INTO reviews(review_id, fruit, rating, store, author) VALUES %L`,
+        formattedReviewsValue
+      );
+      return db.query(sqlReviewsString);
     });
 };
 
