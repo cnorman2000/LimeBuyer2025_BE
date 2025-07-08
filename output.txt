@@ -1,0 +1,38 @@
+           List of relations
+ Schema |  Name   | Type  |    Owner    
+--------+---------+-------+-------------
+ public | reviews | table | cnorman2000
+ public | stores  | table | cnorman2000
+ public | users   | table | cnorman2000
+(3 rows)
+
+ uid |      username      |                              avatar_url                               
+-----+--------------------+-----------------------------------------------------------------------
+   1 | LemonLover1977     | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   2 | FruitWizard        | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   3 | NotBigFruit        | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   4 | TheMandarinMagnate | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   5 | TheLemonGrab       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+(5 rows)
+
+ review_id | fruit |                                                                    body                                                                    | rating | store_id | uid 
+-----------+-------+--------------------------------------------------------------------------------------------------------------------------------------------+--------+----------+-----
+         1 | Lime  | These limes were unappealing                                                                                                               |      2 |        4 |   2
+         2 | Lime  | Not as good as lemons but still pretty zesty                                                                                               |      3 |        4 |   1
+         3 | Lemon | Now this is more like it!                                                                                                                  |      5 |        4 |   1
+         4 | Lime  | Artisanal! Don't make me laugh, BigFruit has better limes at a much more affordable price. Buy one get one free till the end of the month! |      1 |        3 |   3
+         5 | Lemon | Everything a man could want in a lemon, I can't get enough!                                                                                |      4 |        3 |   4
+         6 | Lime  | My go to supplier for all things citrus!                                                                                                   |      5 |        2 |   3
+         7 | Lemon | Unacceptable!!!                                                                                                                            |      1 |        3 |   5
+         8 | Lime  | Not pear-fect, but still grape!                                                                                                            |      3 |        1 |   2
+         9 | Lemon | I'm bananas for this fruit!                                                                                                                |      4 |        1 |   4
+(9 rows)
+
+ store_id |    store_name     |  description  |   lat   |  long  |                                  url                                  
+----------+-------------------+---------------+---------+--------+-----------------------------------------------------------------------
+        1 | AppleyEverAfter   | Green Grocers | 10.1234 | 15.987 | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+        2 | BigFruit          | Supermarket   |  11.666 | 13.987 | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+        3 | ArtisanalCitrus   | Green Grocers | 10.1234 | 15.987 | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+        4 | BlueberryManGroup | Supermarket   |  9.7856 | 12.987 | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+(4 rows)
+
