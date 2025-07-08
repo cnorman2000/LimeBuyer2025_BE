@@ -1,5 +1,5 @@
 const db = require("../connection");
-const format = require(`pg-format`);
+const format = require("pg-format");
 
 const seed = ({ userData, storeData, reviewData }) => {
   return db
@@ -35,6 +35,7 @@ const seed = ({ userData, storeData, reviewData }) => {
         reviews(
         review_id SERIAL PRIMARY KEY,
         fruit VARCHAR(20) NOT NULL,
+        body VARCHAR(1000),
         rating INT NOT NULL,
         store VARCHAR(50) REFERENCES stores(store_id) NOT NULL),
         author VARCHAR(100) REFERENCES users(uid) NOT NULL`);
@@ -48,7 +49,7 @@ const seed = ({ userData, storeData, reviewData }) => {
       );
 
       const sqlUsersString = format(
-        `INSERT INTO users(uid, username, avatar_url) VALUES %L`,
+        `INSERT INTO users(uid, username, avatar_url) VALUES ($1, $2, $3)`,
         formattedUsersValue
       );
       return db.query(sqlUsersString);
@@ -62,7 +63,7 @@ const seed = ({ userData, storeData, reviewData }) => {
       );
 
       const sqlStoresString = format(
-        `INSERT INTO stores(store_id, store_name, description, lat, long, url) VALUES %L`,
+        `INSERT INTO stores(store_id, store_name, description, lat, long, url) VALUES ($1, $2, $3, $4, $5, $6)`,
         formattedStoresValue
       );
       return db.query(sqlStoresString);
@@ -76,7 +77,7 @@ const seed = ({ userData, storeData, reviewData }) => {
       );
 
       const sqlReviewsString = format(
-        `INSERT INTO reviews(review_id, fruit, rating, store, author) VALUES %L`,
+        `INSERT INTO reviews(review_id, fruit, body, rating, store, author) VALUES ($1, $2, $3, $4, $5, $6)`,
         formattedReviewsValue
       );
       return db.query(sqlReviewsString);
