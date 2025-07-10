@@ -1,4 +1,5 @@
 const db = require("../db/connection");
+const endpointsJson = require("../endpoints.json");
 const { userData, storeData, reviewData } = require("../db/data/test-data");
 const request = require("supertest");
 const app = require("../app");
@@ -66,15 +67,15 @@ describe("GET /api/reviews", () => {
   });*/
 });
 
-describe('GET /api', () => {
-    test('200: Responds with an object detailing all the documentation for each endpoint', () => {
-        return request(app)
-        .get('/api') 
-        .expect(200)
-        .then(({body: {endpoints}}) => {
-            expect(endpoints).toEqual(endpointsJson)
-        })
-    })
+describe("GET /api", () => {
+  test("200: Responds with an object detailing all the documentation for each endpoint", () => {
+    return request(app)
+      .get("/api")
+      .expect(200)
+      .then(({ body: { endpoints } }) => {
+        expect(endpoints).toEqual(endpointsJson);
+      });
+  });
 });
 
 describe("GET /api/users", () => {
@@ -107,5 +108,3 @@ describe("GET /api/users/:uid", () => {
       });
   });
 });
-
-
