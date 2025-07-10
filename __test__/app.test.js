@@ -1,5 +1,7 @@
 const db = require("../db/connection");
+
 const { userData, storeData, reviewData } = require("../db/data/test-data");
+
 const request = require("supertest");
 const app = require("../app");
 
@@ -8,6 +10,17 @@ const seed = require("../db/seeds/seed");
 beforeEach(() => seed({ userData, storeData, reviewData }));
 
 afterAll(() => db.end());
+
+describe('GET /api', () => {
+    test('200: Responds with an object detailing all the documentation for each endpoint', () => {
+        return request(app)
+        .get('/api') 
+        .expect(200)
+        .then(({body: {endpoints}}) => {
+            expect(endpoints).toEqual(endpointsJson)
+        })
+    })
+});
 
 describe("GET /api/users", () => {
   test("200: Responds with an object with a key of users and a value of an array of user objects, each of which should have a uid, username and avatar_url", () => {
@@ -39,3 +52,4 @@ describe("GET /api/users/:uid", () => {
       });
   });
 });
+

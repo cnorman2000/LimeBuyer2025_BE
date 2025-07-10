@@ -1,5 +1,10 @@
-const express = require("express");
-const app = express();
+
+const express = require('express');
+const {getEndPointsJSON} = require('./controllers/api.controller')
+const app = express()
+
+app.get('/api', getEndPointsJSON)
+app.get('/api/stores', )
 const { getUsers, getUsersByID } = require("./Controllers/users.controller");
 
 app.use(express.json());
