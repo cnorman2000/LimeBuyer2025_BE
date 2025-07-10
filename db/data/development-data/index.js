@@ -1,3 +1,9 @@
-exports.userData = require("./users.js");
-exports.storeData = require("./stores.js");
-exports.reviewData = require("./reviews.js");
+const userData = require("./users.js");
+const storeData = require("./stores.js");
+const reviewData = require("./reviews.js");
+
+module.exports = {
+  userData,
+  storeData,
+  reviewData,
+};
