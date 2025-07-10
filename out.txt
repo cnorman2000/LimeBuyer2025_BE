@@ -1,0 +1,209 @@
+           List of relations
+ Schema |  Name   | Type  |    Owner    
+--------+---------+-------+-------------
+ public | reviews | table | cnorman2000
+ public | stores  | table | cnorman2000
+ public | users   | table | cnorman2000
+(3 rows)
+
+ uid |      username      |                              avatar_url                               
+-----+--------------------+-----------------------------------------------------------------------
+   1 | LemonLover1977     | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   2 | FruitWizard        | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   3 | NotBigFruit        | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   4 | TheMandarinMagnate | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   5 | TheLemonGrab       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   6 | PeachyKeen         | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   7 | BananaBandit       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   8 | MangoMamba         | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+   9 | PineapplePunk      | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  10 | BerryBlaster       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  11 | CitrusKnight       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  12 | FiggyFresh         | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  13 | KiwiWhiz           | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  14 | PapayaPal          | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  15 | MelonManiac        | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  16 | AvocadoAmbush      | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  17 | CherryChaser       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  18 | AppleAnomaly       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  19 | GrapefruitGuru     | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  20 | BlueberryBeast     | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  21 | FruitNinja2.0      | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  22 | DurianDaredevil    | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  23 | TangerineTornado   | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  24 | ZestyZebra         | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  25 | BerryBuff          | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  26 | CoconutCoyote      | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  27 | StrawberryStorm    | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  28 | DragonfruitDream   | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  29 | GuavaGoose         | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  30 | PlumPirate         | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  31 | LimeLurker         | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  32 | CranberryCreep     | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  33 | PearProphet        | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  34 | JackfruitJuggler   | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  35 | ApricotAgent       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  36 | PassionFruitPunk   | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  37 | PersimmonPhantom   | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  38 | MulberryMystic     | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  39 | RaspberryRogue     | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  40 | LycheeLegend       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  41 | SatsumaSeeker      | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  42 | GooseberryGiant    | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  43 | RambutanRebel      | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  44 | OliveOracle        | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  45 | FruitFreak         | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  46 | CurrantCommander   | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  47 | StarfruitSniper    | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  48 | NectarineNinja     | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  49 | Bananarchist       | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+  50 | FruitFiestaFan     | https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg
+(50 rows)
+
+ review_id |   fruit    |                                                                    body                                                                    | rating |  store_id  | uid | published  
+-----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------+------------+-----+------------
+         1 | Lime       | These limes were unappealing                                                                                                               |      2 |   77175186 |   2 | 2025-08-18
+         2 | Lime       | Not as good as lemons but still pretty zesty                                                                                               |      3 | 1106919062 |   1 | 2025-12-19
+         3 | Lemon      | Now this is more like it!                                                                                                                  |      5 |   85712437 |   1 | 2025-10-31
+         4 | Lime       | Artisanal! Don't make me laugh, BigFruit has better limes at a much more affordable price. Buy one get one free till the end of the month! |      1 |  543525913 |   3 | 2025-11-16
+         5 | Lemon      | Everything a man could want in a lemon, I can't get enough!                                                                                |      4 |  437349600 |   4 | 2025-07-14
+         6 | Lime       | My go to supplier for all things citrus!                                                                                                   |      5 |  881216101 |   3 | 2025-01-18
+         7 | Lemon      | Unacceptable!!!                                                                                                                            |      1 |   87266637 |   5 | 2025-03-13
+         8 | Lime       | Not pear-fect, but still grape!                                                                                                            |      3 |  448331898 |   2 | 2025-10-10
+         9 | Lemon      | I'm bananas for this fruit!                                                                                                                |      4 | 4436285720 |   4 | 2025-03-28
+        10 | Lemon      | Zesty, bright, and perfect — amazing Lemon.                                                                                                |      5 |  437349594 |  49 | 2025-06-12
+        11 | Lime       | Lime? More like disappointment wrapped in skin.                                                                                            |      1 |  759407543 |  16 | 2025-05-27
+        12 | Lime       | So fresh and full of flavor — best Lime I've had.                                                                                          |      4 |   85712128 |  14 | 2025-05-26
+        13 | Lemon      | Low-quality Lemon. Avoid if you can.                                                                                                       |      1 |  434774448 |   7 | 2025-11-28
+        14 | Lime       | 10/10 Lime experience!                                                                                                                     |      4 |  759407541 |  38 | 2025-08-28
+        15 | Lime       | Would buy this Lime again in a heartbeat.                                                                                                  |      4 |  385439321 |  36 | 2025-11-07
+        16 | Lime       | Zesty, bright, and perfect — amazing Lime.                                                                                                 |      4 |  828037594 |  50 | 2025-01-10
+        17 | Mandarins  | Incredible quality. This Mandarins made my day!                                                                                            |      5 | 5936666622 |  30 | 2025-08-19
+        18 | Mandarins  | Low-quality Mandarins. Avoid if you can.                                                                                                   |      2 |   85707380 |  17 | 2025-12-21
+        19 | Lemon      | Would not recommend this Lemon to anyone.                                                                                                  |      2 |  150941388 |  43 | 2025-02-09
+        20 | Mandarins  | Tart but delightful — love this Mandarins.                                                                                                 |      4 |  945963523 |  33 | 2025-02-12
+        21 | Mandarins  | Sad little Mandarins. Expected better.                                                                                                     |      1 |  718460690 |  50 | 2025-05-03
+        22 | Mandarins  | Mandarins? More like disappointment wrapped in skin.                                                                                       |      2 | 1015090447 |  11 | 2025-11-30
+        23 | Mandarins  | Tart but delightful — love this Mandarins.                                                                                                 |      4 |  129019415 |  37 | 2025-07-10
+        24 | Mandarins  | Absolutely loved this Mandarins!                                                                                                           |      4 |  448331884 |  34 | 2025-05-13
+        25 | Grapefruit | So fresh and full of flavor — best Grapefruit I've had.                                                                                    |      5 |   75905298 |  27 | 2025-05-01
+        26 | Lime       | Low-quality Lime. Avoid if you can.                                                                                                        |      2 |   77175985 |  35 | 2025-07-15
+        27 | Mandarins  | Mandarins was juicy and just right.                                                                                                        |      4 |  448331932 |  20 | 2025-10-01
+        28 | Lemon      | Sad little Lemon. Expected better.                                                                                                         |      1 |   83629201 |  21 | 2025-09-05
+        29 | Grapefruit | Seriously sweet and satisfying Grapefruit!                                                                                                 |      4 | 4411803753 |   8 | 2025-06-02
+        30 | Lemon      | Overripe and bland Lemon.                                                                                                                  |      2 |   85712060 |  13 | 2025-03-05
+        31 | Lemon      | Lemon like these are why I shop here.                                                                                                      |      4 |  451361274 |  47 | 2025-05-09
+        32 | Lime       | Absolutely loved this Lime!                                                                                                                |      4 |  385285194 |  39 | 2025-04-25
+        33 | Lemon      | Would not recommend this Lemon to anyone.                                                                                                  |      2 |  444571958 |  28 | 2025-01-20
+        34 | Grapefruit | So fresh and full of flavor — best Grapefruit I've had.                                                                                    |      5 |   87266726 |  20 | 2025-08-11
+        35 | Lime       | Would buy this Lime again in a heartbeat.                                                                                                  |      5 | 2058583957 |  15 | 2025-09-21
+        36 | Lemon      | Overripe and bland Lemon.                                                                                                                  |      2 |  544495996 |  31 | 2025-05-13
+        37 | Lemon      | Absolutely loved this Lemon!                                                                                                               |      5 |   83659297 |  32 | 2025-01-14
+        38 | Lime       | This Lime left a sour taste — and not in a good way.                                                                                       |      2 |  449244296 |  44 | 2025-12-31
+        39 | Grapefruit | Absolutely loved this Grapefruit!                                                                                                          |      4 |  150941657 |  10 | 2025-08-17
+        40 | Mandarins  | This Mandarins left a sour taste — and not in a good way.                                                                                  |      2 |   85979333 |  42 | 2025-05-30
+        41 | Mandarins  | This Mandarins left a sour taste — and not in a good way.                                                                                  |      2 |  448331890 |  36 | 2025-10-12
+        42 | Lime       | Sad little Lime. Expected better.                                                                                                          |      2 |  718460689 |  24 | 2025-05-11
+        43 | Lemon      | Lemon? More like disappointment wrapped in skin.                                                                                           |      2 |  448331902 |  25 | 2025-09-30
+        44 | Grapefruit | This Grapefruit left a sour taste — and not in a good way.                                                                                 |      1 |   85763241 |  46 | 2025-10-12
+        45 | Lime       | Lime? More like disappointment wrapped in skin.                                                                                            |      1 |  444571947 |  46 | 2025-12-04
+        46 | Lime       | Sad little Lime. Expected better.                                                                                                          |      1 |  448331927 |  12 | 2025-05-18
+        47 | Grapefruit | Would buy this Grapefruit again in a heartbeat.                                                                                            |      5 |  989766757 |  25 | 2025-10-21
+        48 | Mandarins  | Zesty, bright, and perfect — amazing Mandarins.                                                                                            |      5 |   77176572 |  31 | 2025-09-08
+        49 | Grapefruit | This Grapefruit left a sour taste — and not in a good way.                                                                                 |      1 |   83658746 |  32 | 2025-07-11
+        50 | Grapefruit | Absolutely loved this Grapefruit!                                                                                                          |      4 |  839315391 |  13 | 2025-01-15
+        51 | Grapefruit | Incredible quality. This Grapefruit made my day!                                                                                           |      5 | 4414777799 |  22 | 2025-02-13
+        52 | Lime       | Incredible quality. This Lime made my day!                                                                                                 |      4 |   83628726 |  29 | 2025-06-19
+        53 | Lemon      | Lemon like these are why I shop here.                                                                                                      |      4 |   85763253 |  11 | 2025-06-24
+        54 | Grapefruit | Grapefruit was juicy and just right.                                                                                                       |      5 |   87266773 |  49 | 2025-12-18
+        55 | Lemon      | Sad little Lemon. Expected better.                                                                                                         |      1 |  455086700 |  23 | 2025-08-25
+        56 | Lemon      | Zesty, bright, and perfect — amazing Lemon.                                                                                                |      5 |  448331907 |  43 | 2025-10-29
+        57 | Grapefruit | Overripe and bland Grapefruit.                                                                                                             |      1 |  448331891 |  19 | 2025-02-08
+        58 | Lemon      | Not the kind of Lemon I was hoping for.                                                                                                    |      1 |   83659374 |  28 | 2025-03-08
+        59 | Mandarins  | Mandarins? More like disappointment wrapped in skin.                                                                                       |      2 | 8639858034 |  16 | 2025-04-03
+        60 | Grapefruit | Not the kind of Grapefruit I was hoping for.                                                                                               |      2 |   85763241 |   9 | 2025-04-22
+        61 | Grapefruit | Would not recommend this Grapefruit to anyone.                                                                                             |      2 |   83659297 |  27 | 2025-09-05
+        62 | Lime       | Lime like these are why I shop here.                                                                                                       |      5 |   85712128 |   8 | 2025-10-26
+        63 | Grapefruit | This Grapefruit left a sour taste — and not in a good way.                                                                                 |      2 |  989766757 |  45 | 2025-06-03
+        64 | Lime       | Would buy this Lime again in a heartbeat.                                                                                                  |      5 |   77175985 |   9 | 2025-05-06
+        65 | Lemon      | Lemon was mushy and flavorless.                                                                                                            |      1 |  544495996 |   6 | 2025-02-26
+        66 | Mandarins  | Low-quality Mandarins. Avoid if you can.                                                                                                   |      2 |   85712437 |  38 | 2025-03-03
+        67 | Mandarins  | Very disappointed with this Mandarins.                                                                                                     |      1 | 1106919062 |   7 | 2025-09-08
+        68 | Lemon      | Would buy this Lemon again in a heartbeat.                                                                                                 |      5 |  448331898 |  15 | 2025-08-24
+        69 | Grapefruit | Zesty, bright, and perfect — amazing Grapefruit.                                                                                           |      4 |  434774448 |  18 | 2025-02-10
+        70 | Mandarins  | Sad little Mandarins. Expected better.                                                                                                     |      1 |  945963523 |  18 | 2025-02-16
+        71 | Grapefruit | Low-quality Grapefruit. Avoid if you can.                                                                                                  |      2 |  451361274 |  37 | 2025-10-10
+        72 | Lime       | Lime? More like disappointment wrapped in skin.                                                                                            |      2 |  448331890 |  35 | 2025-08-19
+        73 | Lime       | Would not recommend this Lime to anyone.                                                                                                   |      2 |   87266637 |  42 | 2025-05-03
+        74 | Grapefruit | So fresh and full of flavor — best Grapefruit I've had.                                                                                    |      4 | 4436285720 |  44 | 2025-11-25
+        75 | Lime       | Not the kind of Lime I was hoping for.                                                                                                     |      2 |  989766757 |  45 | 2025-06-25
+        76 | Grapefruit | Would not recommend this Grapefruit to anyone.                                                                                             |      1 |  448331902 |  19 | 2025-07-01
+        77 | Lemon      | Zesty, bright, and perfect — amazing Lemon.                                                                                                |      4 |   83629201 |  40 | 2025-11-04
+        78 | Lime       | Incredible quality. This Lime made my day!                                                                                                 |      5 |  150941657 |  48 | 2025-09-11
+        79 | Lemon      | 10/10 Lemon experience!                                                                                                                    |      4 |  718460690 |  34 | 2025-04-12
+        80 | Lemon      | This Lemon left a sour taste — and not in a good way.                                                                                      |      2 | 4411803753 |  21 | 2025-11-19
+(80 rows)
+
+  store_id  |            store_name            |    type     |   lat   |   lon    
+------------+----------------------------------+-------------+---------+----------
+   75905298 | Ferrylane Local                  | convenience | 53.7021 | -1.47614
+   77175186 | Londis                           | convenience |   53.69 | -1.47687
+   77175985 | Freshly Market                   | convenience | 53.6832 |  -1.4875
+   77176572 | Nisa Local                       | convenience |   53.69 | -1.47768
+   83628726 | Polo Market                      | convenience |  53.683 | -1.48646
+   83629201 | Manchester Superstores           | supermarket | 53.6826 | -1.48678
+   83658746 | Rozlia International Groceries   | convenience | 53.6855 | -1.48859
+   83659297 | Freshco Halal Superstore         | supermarket | 53.6836 | -1.49044
+   83659374 | Polo Market                      | convenience | 53.6831 | -1.48712
+   85707380 | Stanley Store                    | convenience | 53.6812 | -1.49087
+   85712060 | Eastmoor General Store           | convenience | 53.6884 |  -1.4883
+   85712128 | Biedronka                        | convenience | 53.6868 | -1.49823
+   85712437 | Ratnams Food and Wine            | convenience | 53.6866 | -1.49528
+   85763241 | Best-one                         | convenience | 53.6868 | -1.49864
+   85763253 | Northgate Stores                 | convenience | 53.6875 | -1.50121
+   85979333 | Newton Hill Convenience Store    | convenience | 53.7032 | -1.50357
+   87266637 | Wisla Market                     | convenience | 53.6834 |  -1.4943
+   87266726 | Orzelek International Foods      | convenience | 53.6808 | -1.49467
+   87266773 | Tani Sklep Food Store            | supermarket | 53.6807 | -1.49296
+  129019415 | Ryan Food Plus                   | convenience |  53.672 | -1.48335
+  150941388 | St Johns Greengrocers            | greengrocer | 53.6917 | -1.50844
+  150941657 | One Stop                         | convenience | 53.6916 | -1.50836
+  385285194 | Premier                          | convenience | 53.6861 | -1.51375
+  385439321 | Khan's                           | convenience | 53.6803 | -1.51104
+  434774448 | Gambians Abroad Store            | greengrocer | 53.6725 | -1.48369
+  437349594 | Orzelek                          | convenience | 53.6839 | -1.49775
+  437349600 | Polska Wies                      | convenience | 53.6839 | -1.49777
+  444571947 | ACASA                            | convenience | 53.6833 | -1.49444
+  444571958 | East European Food               | convenience | 53.6838 |  -1.4963
+  448331884 | City Shop                        | convenience | 53.6826 | -1.49469
+  448331890 | Dena Foods and Supermart         | supermarket | 53.6814 | -1.49352
+  448331891 | Food Plus Supermarket            | supermarket | 53.6815 | -1.49371
+  448331898 | New Shop Mini Market             | convenience | 53.6812 | -1.49254
+  448331902 | Simple Market                    | convenience | 53.6824 | -1.49374
+  448331907 | Kubus International Food         | convenience | 53.6819 | -1.49391
+  448331927 | Wakefield Mini Market            | convenience | 53.6805 | -1.49271
+  448331932 | Salam Halal Shop                 | convenience | 53.6818 | -1.49322
+  449244296 | Londis                           | convenience | 53.6989 | -1.50351
+  451361274 | Sainsburys Local                 | convenience | 53.6788 | -1.49777
+  455086700 | Lal's Park Lodge Lane Superstore | convenience | 53.6827 | -1.48701
+  543525913 | Spar                             | convenience | 53.7007 | -1.48179
+  544495996 | Morrisons                        | supermarket | 53.6811 | -1.49583
+  718460689 | The Food Warehouse               | supermarket | 53.6975 | -1.50712
+  718460690 | ALDI                             | supermarket | 53.6975 | -1.50638
+  759407541 | Asda On The Move                 | convenience | 53.6958 |  -1.5041
+  759407543 | The Food Warehouse               | supermarket | 53.6786 | -1.50541
+  828037594 | Spar                             | convenience | 53.6729 | -1.48433
+  839315391 | Londis                           | convenience | 53.6866 | -1.49106
+  881216101 | Continental Food Store           | convenience | 53.6811 | -1.50454
+  945963523 | Sainsbury's                      | supermarket | 53.6777 | -1.49941
+  989766757 | Sainsbury's                      | supermarket | 53.6851 | -1.49388
+ 1015090447 | Corner Shop                      | convenience | 53.6823 | -1.49993
+ 1106919062 | Spar                             | convenience | 53.6894 | -1.50515
+ 2058583957 | Tesco Express                    | convenience | 53.6853 | -1.48967
+ 4411803753 | Sasans Shop                      | convenience | 53.6828 |  -1.4949
+ 4414777799 | Wakefield Mini Mart              | convenience | 53.6847 | -1.50001
+ 4436285720 | Westgate Express                 | convenience | 53.6825 | -1.50086
+ 5936666622 | Stars Mini Market                | convenience | 53.6844 | -1.47576
+ 8639858034 | M&S Foodhall                     | supermarket | 53.6824 |  -1.4967
+(59 rows)
+

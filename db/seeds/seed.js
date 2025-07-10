@@ -22,12 +22,11 @@ const seed = ({ userData, storeData, reviewData }) => {
     .then(() => {
       return db.query(`CREATE TABLE
         stores(
-        store_id INT PRIMARY KEY,
-        store_name VARCHAR(100),
-        description VARCHAR(300),
+        store_id BIGINT PRIMARY KEY,
+        store_name VARCHAR(100) NOT NULL,
+        type VARCHAR(300) NOT NULL,
         lat FLOAT NOT NULL,
-        long FLOAT NOT NULL,
-        url VARCHAR(300))`);
+        lon FLOAT NOT NULL)`);
     })
 
     .then(() => {
@@ -37,8 +36,9 @@ const seed = ({ userData, storeData, reviewData }) => {
         fruit VARCHAR(20) NOT NULL,
         body VARCHAR(1000),
         rating INT NOT NULL,
-        store_id INT REFERENCES stores(store_id) NOT NULL,
-        uid INT REFERENCES users(uid) NOT NULL)`);
+        store_id BIGINT REFERENCES stores(store_id) NOT NULL,
+        uid INT REFERENCES users(uid) NOT NULL,
+        published DATE)`);
     })
 
     .then(() => {
@@ -57,13 +57,13 @@ const seed = ({ userData, storeData, reviewData }) => {
 
     .then(() => {
       const formattedStoresValue = storeData.map(
-        ({ store_id, store_name, description, lat, long, url }) => {
-          return [store_id, store_name, description, lat, long, url];
+        ({ store_id, store_name, type, lat, lon }) => {
+          return [store_id, store_name, type, lat, lon];
         }
       );
 
       const sqlStoresString = format(
-        `INSERT INTO stores(store_id, store_name, description, lat, long, url) VALUES %L`,
+        `INSERT INTO stores(store_id, store_name, type, lat, lon) VALUES %L`,
         formattedStoresValue
       );
       return db.query(sqlStoresString);
@@ -71,13 +71,13 @@ const seed = ({ userData, storeData, reviewData }) => {
 
     .then(() => {
       const formattedReviewsValue = reviewData.map(
-        ({ review_id, fruit, body, rating, store_id, uid }) => {
-          return [review_id, fruit, body, rating, store_id, uid];
+        ({ review_id, fruit, body, rating, store_id, uid, published }) => {
+          return [review_id, fruit, body, rating, store_id, uid, published];
         }
       );
 
       const sqlReviewsString = format(
-        `INSERT INTO reviews(review_id, fruit, body, rating, store_id, uid) VALUES %L`,
+        `INSERT INTO reviews(review_id, fruit, body, rating, store_id, uid, published) VALUES %L`,
         formattedReviewsValue
       );
       return db.query(sqlReviewsString);
