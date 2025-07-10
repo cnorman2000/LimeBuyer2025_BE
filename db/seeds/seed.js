@@ -14,7 +14,7 @@ const seed = ({ userData, storeData, reviewData }) => {
     .then(() => {
       return db.query(`CREATE TABLE
         users(
-        uid INT PRIMARY KEY,
+        uid VARCHAR(100) PRIMARY KEY,
         username VARCHAR(300) NOT NULL,
         avatar_url VARCHAR(1000))`);
     })
@@ -37,7 +37,7 @@ const seed = ({ userData, storeData, reviewData }) => {
         body VARCHAR(1000),
         rating INT NOT NULL,
         store_id BIGINT REFERENCES stores(store_id) NOT NULL,
-        uid INT REFERENCES users(uid) NOT NULL,
+        uid VARCHAR(100) REFERENCES users(uid) NOT NULL,
         published DATE)`);
     })
 
