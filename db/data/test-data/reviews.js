@@ -1,6 +1,6 @@
 module.exports = [
   {
-    review_id: "1",
+    review_id: 1,
     fruit: "Lime",
     body: "These limes were unappealing",
     rating: "2",
@@ -9,7 +9,7 @@ module.exports = [
     published: "2025-08-18",
   },
   {
-    review_id: "2",
+    review_id: 2,
     fruit: "Lime",
     body: "Not as good as lemons but still pretty zesty",
     rating: "3",
@@ -18,7 +18,7 @@ module.exports = [
     published: "2025-12-19",
   },
   {
-    review_id: "3",
+    review_id: 3,
     fruit: "Lemon",
     body: "Now this is more like it!",
     rating: "5",
@@ -27,7 +27,7 @@ module.exports = [
     published: "2025-10-31",
   },
   {
-    review_id: "4",
+    review_id: 4,
     fruit: "Lime",
     body: "Artisanal! Don't make me laugh, BigFruit has better limes at a much more affordable price. Buy one get one free till the end of the month!",
     rating: "1",
@@ -36,7 +36,7 @@ module.exports = [
     published: "2025-11-16",
   },
   {
-    review_id: "5",
+    review_id: 5,
     fruit: "Lemon",
     body: "Everything a man could want in a lemon, I can't get enough!",
     rating: "4",

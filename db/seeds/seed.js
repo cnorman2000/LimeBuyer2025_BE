@@ -14,7 +14,7 @@ const seed = ({ userData, storeData, reviewData }) => {
     .then(() => {
       return db.query(`CREATE TABLE
         users(
-        uid INT PRIMARY KEY,
+        uid VARCHAR(100) PRIMARY KEY,
         username VARCHAR(300) NOT NULL,
         avatar_url VARCHAR(1000))`);
     })
@@ -37,7 +37,7 @@ const seed = ({ userData, storeData, reviewData }) => {
         body VARCHAR(1000),
         rating INT NOT NULL,
         store_id BIGINT REFERENCES stores(store_id) NOT NULL,
-        uid INT REFERENCES users(uid) NOT NULL,
+        uid VARCHAR(100) REFERENCES users(uid) NOT NULL,
         published DATE)`);
     })
 
@@ -49,7 +49,7 @@ const seed = ({ userData, storeData, reviewData }) => {
       );
 
       const sqlUsersString = format(
-        `INSERT INTO users(uid, username, avatar_url) VALUES %L`,
+        `INSERT INTO users(uid, username, avatar_url) VALUES %L RETURNING *`,
         formattedUsersValue
       );
       return db.query(sqlUsersString);
@@ -63,7 +63,7 @@ const seed = ({ userData, storeData, reviewData }) => {
       );
 
       const sqlStoresString = format(
-        `INSERT INTO stores(store_id, store_name, type, lat, lon) VALUES %L`,
+        `INSERT INTO stores(store_id, store_name, type, lat, lon) VALUES %L RETURNING *`,
         formattedStoresValue
       );
       return db.query(sqlStoresString);
@@ -77,7 +77,7 @@ const seed = ({ userData, storeData, reviewData }) => {
       );
 
       const sqlReviewsString = format(
-        `INSERT INTO reviews(review_id, fruit, body, rating, store_id, uid, published) VALUES %L`,
+        `INSERT INTO reviews(review_id, fruit, body, rating, store_id, uid, published) VALUES %L RETURNING *`,
         formattedReviewsValue
       );
       return db.query(sqlReviewsString);
