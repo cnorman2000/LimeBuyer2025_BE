@@ -9,7 +9,7 @@ app.get('/api/reviews/:store_id', getReviewsByStoreId);
 app.post('/api/reviews', postReview);
 app.get('/api', getEndPointsJSON)
 app.get('/api/stores', )
-const { getUsers, getUsersByID } = require("./Controllers/users.controller");
+const { getUsers, getUsersByID } = require("./controllers/users.controller");
 app.get("/api/users", getUsers);
 app.get("/api/users/:uid", getUsersByID);
 
