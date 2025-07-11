@@ -68,6 +68,7 @@ describe("GET /api/reviews", () => {
       .post("/api/reviews")
       .send(newReview)
       .then((res) => {
+        console.log(res.body);
         expect(res.statusCode).toBe(201);
         expect(res.body).toHaveProperty("review");
         expect(res.body.review).toMatchObject(newReview);
@@ -111,9 +112,7 @@ describe("GET /api/users/:uid", () => {
       .then(({ body: { user } }) => {
         expect(user.uid).toBe("1");
         expect(user.username).toBe("LemonLover1977");
-        expect(user.avatar_url).toBe(
-          "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
-        );
+        expect(user.avatar_url).toBe("https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg");
       });
   });
 });
