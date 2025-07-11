@@ -1,5 +1,5 @@
 const { getAllReviews, getReviewsByStoreId, postReview } = require("./controllers/reviews.controller");
-const { getUsers, getUsersByID } = require("./controllers/users.controller");
+const { getUsers, getUsersByID, getReviewsByUID } = require("./controllers/users.controller");
 const { getEndPointsJSON } = require("./controllers/api.controller");
 const express = require("express");
 const app = express();
@@ -13,6 +13,7 @@ app.get('/api', getEndPointsJSON)
 app.get('/api/stores', )
 app.get("/api/users", getUsers);
 app.get("/api/users/:uid", getUsersByID);
+app.get("/api/users/:uid/reviews", getReviewsByUID);
 
 app.use((err, req, res, next) => {
   console.error(err);
