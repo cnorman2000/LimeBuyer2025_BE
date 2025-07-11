@@ -4,7 +4,6 @@ const { userData, storeData, reviewData } = require("../db/data/test-data");
 const request = require("supertest");
 const app = require("../app");
 const seed = require("../db/seeds/seed");
-const Test = require("supertest/lib/test");
 
 beforeEach(() => {
   return seed({ userData, storeData, reviewData });
@@ -105,6 +104,24 @@ describe("GET /api/users/:uid", () => {
         expect(user.avatar_url).toBe(
           "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
         );
+      });
+  });
+});
+
+describe("GET /api/users/:uid/reviews", () => {
+  test.only("200: Responds with all the reviews for a given user", () => {
+    return request(app)
+      .get("/api/users/1/reviews")
+      .expect(200)
+      .then(({ body: { reviews } }) => {
+        expect(reviews.length).toBe(2);
+        expect(reviews[0].review_id).toBe(2);
+        expect(reviews[1].review_id).toBe(3);
+        reviews.forEach((review) => {
+          expect(typeof review.uid).toBe("string");
+          expect(typeof review.fruit).toBe("string");
+          expect(typeof review.rating).toBe("number");
+        });
       });
   });
 });

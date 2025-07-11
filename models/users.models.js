@@ -20,3 +20,9 @@ exports.selectUsersByID = (uid) => {
       return rows[0];
     });
 };
+
+exports.selectReviewsByUID = (uid) => {
+  return db
+    .query(`SELECT * FROM reviews WHERE uid = $1`, [uid])
+    .then((result) => result.rows);
+};
