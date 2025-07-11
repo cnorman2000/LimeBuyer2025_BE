@@ -47,13 +47,13 @@ describe("GET /api/reviews", () => {
         }
       });
   });
-  /*test("creates new review with required properties", () => {
+  test("creates new review with required properties", () => {
     const newReview = {
       fruit: "Lime",
       body: "limey",
       rating: 5,
-      store_id: 1,
-      uid: 1,
+      store_id: "1",
+      uid: "1",
     };
     return request(app)
       .post("/api/reviews")
@@ -64,7 +64,7 @@ describe("GET /api/reviews", () => {
         expect(res.body.review).toMatchObject(newReview);
         expect(res.body.review).toHaveProperty("review_id");
       });
-  });*/
+  });
 });
 
 describe("GET /api", () => {
