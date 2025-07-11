@@ -1,9 +1,9 @@
+
 const {
   selectUsers,
   selectUsersByID,
   selectReviewsByUID,
 } = require("../models/users.models");
-
 
 exports.getUsers = (req, res, next) => {
   selectUsers()
