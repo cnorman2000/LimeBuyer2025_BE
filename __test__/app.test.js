@@ -4,7 +4,6 @@ const { userData, storeData, reviewData } = require("../db/data/test-data");
 const request = require("supertest");
 const app = require("../app");
 const seed = require("../db/seeds/seed");
-const Test = require("supertest/lib/test");
 
 beforeEach(() => {
   return seed({ userData, storeData, reviewData });
@@ -47,13 +46,13 @@ describe("GET /api/reviews", () => {
         }
       });
   });
-  /*test("creates new review with required properties", () => {
+  test("creates new review with required properties", () => {
     const newReview = {
       fruit: "Lime",
       body: "limey",
       rating: 5,
-      store_id: 1,
-      uid: 1,
+      store_id: "1",
+      uid: "1",
     };
     return request(app)
       .post("/api/reviews")
@@ -64,7 +63,7 @@ describe("GET /api/reviews", () => {
         expect(res.body.review).toMatchObject(newReview);
         expect(res.body.review).toHaveProperty("review_id");
       });
-  });*/
+  });
 });
 
 describe("GET /api", () => {
@@ -109,6 +108,7 @@ describe("GET /api/users/:uid", () => {
   });
 });
 
+
 describe("GET /api/stores", () => {
   test("200: Responds with an object with a key of stores and a value of all stores objects in a single array", () => {
     return request(app)
@@ -150,3 +150,22 @@ describe("GET /api/stores/:store_id", () => {
     })
   })
 })
+
+describe("GET /api/users/:uid/reviews", () => {
+  test("200: Responds with all the reviews for a given user", () => {
+    return request(app)
+      .get("/api/users/1/reviews")
+      .expect(200)
+      .then(({ body: { reviews } }) => {
+        expect(reviews.length).toBe(2);
+        expect(reviews[0].review_id).toBe(2);
+        expect(reviews[1].review_id).toBe(3);
+        reviews.forEach((review) => {
+          expect(typeof review.uid).toBe("string");
+          expect(typeof review.fruit).toBe("string");
+          expect(typeof review.rating).toBe("number");
+        });
+      });
+  });
+});
+
