@@ -4,6 +4,7 @@ const {
   selectReviewsByUID,
 } = require("../models/users.models");
 
+
 exports.getUsers = (req, res, next) => {
   selectUsers()
     .then((users) => {

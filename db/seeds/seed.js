@@ -71,13 +71,13 @@ const seed = ({ userData, storeData, reviewData }) => {
 
     .then(() => {
       const formattedReviewsValue = reviewData.map(
-        ({ review_id, fruit, body, rating, store_id, uid, published }) => {
-          return [review_id, fruit, body, rating, store_id, uid, published];
+        ({  fruit, body, rating, store_id, uid, published }) => {
+          return [ fruit, body, rating, store_id, uid, published];
         }
       );
 
       const sqlReviewsString = format(
-        `INSERT INTO reviews(review_id, fruit, body, rating, store_id, uid, published) VALUES %L RETURNING *`,
+        `INSERT INTO reviews(fruit, body, rating, store_id, uid, published) VALUES %L RETURNING *`,
         formattedReviewsValue
       );
       return db.query(sqlReviewsString);
