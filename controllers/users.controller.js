@@ -17,6 +17,10 @@ exports.getUsers = (req, res, next) => {
 
 exports.getUsersByID = (req, res, next) => {
   const uid = req.params.uid;
+  const alphanumericRegex = /^[a-zA-Z0-9]+$/
+  if (!alphanumericRegex.test(uid)) {
+    return next({status: 400, msg: 'Error - bad request: invalid uid'})
+  }
   selectUsersByID(uid)
     .then((user) => {
       res.status(200).send({ user: user });

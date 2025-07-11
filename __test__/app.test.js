@@ -44,6 +44,16 @@ describe("GET /api/reviews", () => {
           expect(review).toHaveProperty("store_id");
           expect(review).toHaveProperty("uid");
         }
+          })
+          
+        })
+       test("200: Responds with an empty array when a store has no reviews", () => {
+          const store_id = 5;
+          return request(app)
+          .get(`/api/reviews/${store_id}`)
+          .expect(200)
+          .then(({body}) => {
+            expect(body).toEqual({'reviews': []}) 
       });
   });
   test("creates new review with required properties", () => {
@@ -168,3 +178,24 @@ describe("GET /api/users/:uid/reviews", () => {
   });
 });
 
+describe("Postgres errors", () => {
+  test("400: Responds with 'bad request' when uid contains invalid characters", () => {
+    return request(app)
+    .get("/api/users/uid!")
+    .expect(400) 
+    .then(({body}) => {
+      expect(body.msg).toBe('Error - bad request: invalid uid')
+    })
+  })
+})
+
+describe("Custom errors", () => {
+  test("404: Responds with 'path not found' when path does not exist", () => {
+    return request(app)
+    .get("/api/invalidPath")
+    .expect(404)
+    .then(({body}) => {
+      expect(body.msg).toBe("Error - path not found")
+    })
+  } )
+})
