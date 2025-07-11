@@ -109,7 +109,7 @@ describe("GET /api/users/:uid", () => {
 });
 
 describe("GET /api/users/:uid/reviews", () => {
-  test.only("200: Responds with all the reviews for a given user", () => {
+  test("200: Responds with all the reviews for a given user", () => {
     return request(app)
       .get("/api/users/1/reviews")
       .expect(200)
