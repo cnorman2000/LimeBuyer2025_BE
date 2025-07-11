@@ -108,3 +108,45 @@ describe("GET /api/users/:uid", () => {
       });
   });
 });
+
+describe("GET /api/stores", () => {
+  test("200: Responds with an object with a key of stores and a value of all stores objects in a single array", () => {
+    return request(app)
+    .get('/api/stores')
+    .expect(200)
+    .then(({body}) => {
+      const {stores} = body;
+      stores.forEach((store) => {
+        expect( typeof store.store_id).toBe('string')
+        expect(typeof store.store_name).toBe('string')
+        expect(typeof store.type).toBe('string')
+        expect(typeof store.lat).toBe('number')
+        expect(typeof store.lon).toBe('number')
+      })
+      expect(stores.length).not.toBe(0)
+    })
+  })
+})
+
+describe("GET /api/stores/:store_id", () => {
+  test("200: Responds with an object with a key of store and the value of a store object", () => {
+    const storeId = "4"
+    return request(app)
+    .get(`/api/stores/${storeId}`)
+    .expect(200)
+    .then(({body}) => {
+      const {
+        store_id,
+        store_name,
+        type,
+        lat,
+        lon
+      } = body.store
+       expect(store_id).toBe("4")
+       expect(typeof store_name).toBe('string')
+       expect(typeof type).toBe('string')
+       expect(typeof lat).toBe('number')
+       expect(typeof lon).toBe('number')
+    })
+  })
+})
