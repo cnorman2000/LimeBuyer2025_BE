@@ -40,7 +40,7 @@ module.exports = [
     fruit: "Lemon",
     body: "Everything a man could want in a lemon, I can't get enough!",
     rating: "4",
-    store_id: "5",
+    store_id: "4",
     uid: "4",
     published: "2025-07-14",
   },
