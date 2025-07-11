@@ -3,6 +3,7 @@ const { getUsers, getUsersByID } = require("./controllers/users.controller");
 const { getEndPointsJSON } = require("./controllers/api.controller");
 const express = require("express");
 const app = express();
+const cors = require('cors');
 
 
 app.use(express.json());
