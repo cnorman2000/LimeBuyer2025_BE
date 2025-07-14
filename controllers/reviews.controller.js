@@ -32,5 +32,8 @@ exports.postReview = (req, res, next) => {
     .then((newReview) => {
       res.status(201).send({ review: newReview });
     })
-    .catch(next);
+      .catch((err) => {
+          console.error("post reviews error:", err);
+          next(err)
+    });
 };
