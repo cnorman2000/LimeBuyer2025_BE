@@ -1,7 +1,7 @@
-
+const { request } = require("../app");
 const {
   selectUsers,
-  selectUsersByID,
+  selectUsersByUID,
   selectReviewsByUID,
 } = require("../models/users.models");
 
@@ -15,13 +15,13 @@ exports.getUsers = (req, res, next) => {
     });
 };
 
-exports.getUsersByID = (req, res, next) => {
+exports.getUsersByUID = (req, res, next) => {
   const uid = req.params.uid;
-  const alphanumericRegex = /^[a-zA-Z0-9]+$/
+  const alphanumericRegex = /^[a-zA-Z0-9]+$/;
   if (!alphanumericRegex.test(uid)) {
-    return next({status: 400, msg: 'Error - bad request: invalid uid'})
+    return next({ status: 400, msg: "Error - bad request: invalid uid" });
   }
-  selectUsersByID(uid)
+  selectUsersByUID(uid)
     .then((user) => {
       res.status(200).send({ user: user });
     })

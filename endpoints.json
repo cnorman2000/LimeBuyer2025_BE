@@ -22,5 +22,146 @@
         }
       ]
     }
+  },
+  "GET /api/stores/:store_id": {
+    "description": "serves an object containing the designated store",
+    "exampleResponse": {
+      "store_id": "77175186",
+      "store_name": "Londis",
+      "type": "convenience",
+      "lat": "53.69",
+      "lon": "-1.47687"
+    }
+  },
+  "GET /api/users": {
+    "description": "serves an array of all users",
+    "exampleResponse": [
+      {
+        "uid": "1",
+        "username": "LemonLover1977",
+        "avatar_url": "https://api.dicebear.com/9.x/adventurer/svg?seed=Luis"
+      },
+      {
+        "uid": "2",
+        "username": "FruitWizard",
+        "avatar_url": "https://api.dicebear.com/9.x/adventurer/svg?seed=Jude"
+      },
+      {
+        "uid": "3",
+        "username": "NotBigFruit",
+        "avatar_url": "https://api.dicebear.com/9.x/adventurer/svg?seed=Aidan"
+      }
+    ]
+  },
+  "GET /api/users/:uid": {
+    "description": "serves a specific user object",
+    "exampleResponse": {
+      "uid": "4",
+      "username": "TheMandarinMagnate",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer/svg?seed=Emery"
+    }
+  },
+  "GET /api/users/:uid/reviews": {
+    "description": "serves an array of all reviews associated with a user",
+    "exampleResponse": [
+      {
+        "review_id": "2",
+        "fruit": "Lime",
+        "body": "Not as good as lemons but still pretty zesty",
+        "rating": "3",
+        "store_id": "1106919062",
+        "uid": "1",
+        "published": "2025-12-19"
+      },
+      {
+        "review_id": "3",
+        "fruit": "Lemon",
+        "body": "Now this is more like it!",
+        "rating": "5",
+        "store_id": "85712437",
+        "uid": "1",
+        "published": "2025-10-31"
+      }
+    ]
+  },
+  "GET /api/reviews": {
+    "description": "serves an array of all reviews",
+    "exampleResponse": [
+      {
+        "review_id": "1",
+        "fruit": "Lime",
+        "body": "These limes were unappealing",
+        "rating": "2",
+        "store_id": "77175186",
+        "uid": "2",
+        "published": "2025-08-18"
+      },
+      {
+        "review_id": "2",
+        "fruit": "Lime",
+        "body": "Not as good as lemons but still pretty zesty",
+        "rating": "3",
+        "store_id": "1106919062",
+        "uid": "1",
+        "published": "2025-12-19"
+      },
+      {
+        "review_id": "3",
+        "fruit": "Lemon",
+        "body": "Now this is more like it!",
+        "rating": "5",
+        "store_id": "85712437",
+        "uid": "1",
+        "published": "2025-10-31"
+      }
+    ]
+  },
+  "GET /api/reviews/:store_id": {
+    "description": "serves an array of reviews associated with a store",
+    "exampleResponse": [
+      {
+        "review_id": "3",
+        "fruit": "Lemon",
+        "  body": "Now this is more like it!",
+        "rating": "5",
+        "store_id": "85712437",
+        "uid": "1",
+        "published": "2025-10-31"
+      },
+      {
+        "review_id": "66",
+        "fruit": "Mandarins",
+        "body": "Low-quality Mandarins. Avoid if you can.",
+        "rating": "2",
+        "store_id": "85712437",
+        "uid": "38",
+        "published": "2025-03-03"
+      }
+    ]
+  },
+  "POST /api/reviews": {
+    "description": "serves the posted review object",
+    "exampleResponse": {
+      "review_id": 81,
+      "fruit": "Lemon",
+      "body": "This is a new review",
+      "store_id": "85712437",
+      "uid": "1",
+      "published": "2025-08-18"
+    }
+  },
+  "PATCH /api/reviews/review_id": {
+    "description": "serves the specified review object with updated properties",
+    "exampleResponse": {
+      "review_id": 81,
+      "fruit": "Lemon",
+      "body": "patch test",
+      "store_id": "85712437",
+      "uid": "1",
+      "published": "2025-08-18"
+    }
+  },
+  "DELETE /api/review/review_id": {
+    "description": "deletes the specified review"
   }
 }
