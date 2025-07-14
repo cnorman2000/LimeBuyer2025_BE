@@ -214,65 +214,64 @@ describe("Custom errors", () => {
 
   test("404: Responds with 'path not found' when path does not exist", () => {
     return request(app)
-    .get("/api/invalidPath")
-    .expect(404)
-    .then(({body}) => {
-      expect(body.msg).toBe("Error - path not found")
-    })
+      .get("/api/invalidPath")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Error - path not found")
+      })
   })
 
- test("400: Responds with 'bad request' when uid contains invalid characters", () => {
+  test("400: Responds with 'bad request' when uid contains invalid characters", () => {
     return request(app)
-    .get("/api/users/uid!")
-    .expect(400) 
-    .then(({body}) => {
-      expect(body.msg).toBe('Error - bad request: invalid uid')
-    })
+      .get("/api/users/uid!")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Error - bad request: invalid uid')
+      })
   })
 
   test("404: Responds with 'store not found' when a store doesn't exist within the database", () => {
     return request(app)
-    .get("/api/stores/store_id")
-    .expect(404)
-    .then(({body}) => {
-      expect(body.msg).toBe("Error - store not found")
-    })
+      .get("/api/stores/store_id")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Error - store not found")
+      })
   })
 
   test("404: Responds with 'store not found' when a store doesn't exist on this path", () => {
     const nonExistentStore = "dgfddfhdfruits"
 
     return request(app)
-    .get(`/api/reviews/${nonExistentStore}`)
-    .expect(404)
-    .then(({body}) => {
-      expect(body.msg).toBe("Error - store not found")
-    })
+      .get(`/api/reviews/${nonExistentStore}`)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Error - store not found")
+      })
   })
 
  
-describe.only("PATCH /api/reviews/:review_id", () => {
-  test("200: Updates the rating and body of a review", () => {
-    return request(app)
-      .patch("/api/reviews/1")
-      .send({ body: "This is a new review", rating: 5 })
-      .expect(200)
-      .then(({ body: updatedReview }) => {
-        console.log(body);
-        expect(updatedReview.rating).toBe(5);
-      });
+  describe.only("PATCH /api/reviews/:review_id", () => {
+    test("200: Updates the rating and body of a review", () => {
+      return request(app)
+        .patch("/api/reviews/1")
+        .send({ body: "This is a new review", rating: 5 })
+        .expect(200)
+        .then(({ body: updatedReview }) => {
+          expect(updatedReview.review.rating).toBe(5);
+        });
+    });
   });
-});
 
-describe("DELETE /api/reviews/:review_id", () => {
-  test("200: Deletes a review after receiving its review_id", () => {
-    return request(app).delete("/api/reviews/2").expect(200);
-  });
-  test("404: Responds 404 when review_id not found", () => {
-    return request(app).delete("/api/reviews/10").expect(404);
-  });
-  test("400: Responds with 400 bad request when invalid request is made", () => {
-    return request(app).delete("/api/reviews/limebuyer").expect(400);
-  });
-});
-
+  describe("DELETE /api/reviews/:review_id", () => {
+    test("200: Deletes a review after receiving its review_id", () => {
+      return request(app).delete("/api/reviews/2").expect(200);
+    });
+    test("404: Responds 404 when review_id not found", () => {
+      return request(app).delete("/api/reviews/10").expect(404);
+    });
+    test("400: Responds with 400 bad request when invalid request is made", () => {
+      return request(app).delete("/api/reviews/limebuyer").expect(400);
+    });
+  })
+})

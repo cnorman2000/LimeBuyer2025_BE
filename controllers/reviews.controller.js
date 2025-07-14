@@ -21,12 +21,7 @@ fetchStoreById(store_id)
         .then((reviews) => res.status(200).send({ reviews }))
     .catch(next)
 }
-
-  const { store_id } = req.params;
-  fetchReviewsByStoreId(store_id)
-    .then((reviews) => res.status(200).send({ reviews }))
-    .catch(next);
-};
+  
 
 exports.postReview = (req, res, next) => {
 const firebaseUid = req.firebaseUid;
@@ -49,13 +44,6 @@ const firebaseUid = req.firebaseUid;
     });
 };
 
-  const { fruit, body, rating, store_id, uid } = req.body;
-  insertReview({ fruit, body, rating, store_id, uid })
-    .then((newReview) => {
-      res.status(201).send({ review: newReview });
-    })
-    .catch(next);
-};
 
 exports.patchReviewsByID = (req, res, next) => {
   const newReview = req.body;
@@ -64,7 +52,6 @@ exports.patchReviewsByID = (req, res, next) => {
 
   const new_rating = newReview.rating;
   const new_body = newReview.body;
-  console.log(`Review Conroller ${review_id}, ${new_body}, ${new_rating}`);
 
   if (typeof new_rating !== "number") {
     return next({ status: 400, msg: "Rating must be a number" });

@@ -33,14 +33,12 @@ exports.insertReview = ({ fruit, body, rating, store_id, uid }) => {
 };
 
 exports.patchReviewByID = (review_id, new_body, new_rating) => {
-  console.log(`Review Model ${review_id}, ${new_body}, ${new_rating}`);
   return db
     .query(
-      `UPDATE reviews SET body = $2, SET rating = $3, WHERE review_id = $1 RETURNING *`,
-      [review_id, new_body, new_rating]
+      `UPDATE reviews SET body = $1, rating = $2 WHERE review_id = $3 RETURNING *`,
+      [new_body, new_rating, review_id  ]
     )
     .then(({ rows }) => {
-      console.log(rows);
       return rows[0];
     });
 };

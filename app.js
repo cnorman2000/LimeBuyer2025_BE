@@ -30,7 +30,7 @@ app.use(express.json());
 
 app.get("/api/reviews", getAllReviews);
 app.get("/api/reviews/:store_id", getReviewsByStoreId);
-app.post("/api/reviews", postReview);
+app.post("/api/reviews", firebaseAuth, postReview);
 app.patch("/api/reviews/:review_id", patchReviewsByID);
 app.delete("/api/reviews/:review_id", removeReviewByID);
 app.get("/api", getEndPointsJSON);
