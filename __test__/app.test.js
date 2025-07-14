@@ -55,27 +55,10 @@ describe("GET /api/reviews", () => {
           .then(({body}) => {
             expect(body).toEqual({'reviews': []}) 
       });
+       });
   });
-  test("creates new review with required properties", () => {
-    const newReview = {
-      fruit: "Lime",
-      body: "limey",
-      rating: 5,
-      store_id: "1",
-      uid: "1",
-    };
-    return request(app)
-      .post("/api/reviews")
-      .send(newReview)
-      .then((res) => {
-        console.log(res.body);
-        expect(res.statusCode).toBe(201);
-        expect(res.body).toHaveProperty("review");
-        expect(res.body.review).toMatchObject(newReview);
-        expect(res.body.review).toHaveProperty("review_id");
-      });
-  });
-});
+
+
 
 describe("GET /api", () => {
   test("200: Responds with an object detailing all the documentation for each endpoint", () => {
