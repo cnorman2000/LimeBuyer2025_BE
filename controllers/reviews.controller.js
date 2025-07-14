@@ -2,7 +2,7 @@
 const { fetchAllReviews, fetchReviewsByStoreId, insertReview, patchReviewByID,
   deleteReviewByID, } = require('../models/reviews.model')
 const { findOrCreateUserByFirebaseUid } = require('../models/users.models')
-
+const {fetchStoreById} = require('../models/stores.models')
 
 exports.getAllReviews = (req, res, next) => {
   fetchAllReviews()
@@ -14,6 +14,14 @@ exports.getAllReviews = (req, res, next) => {
 };
 
 exports.getReviewsByStoreId = (req, res, next) => {
+
+    const { store_id } = req.params;
+fetchStoreById(store_id)
+    .then(() => {return fetchReviewsByStoreId(store_id)})
+        .then((reviews) => res.status(200).send({ reviews }))
+    .catch(next)
+}
+
   const { store_id } = req.params;
   fetchReviewsByStoreId(store_id)
     .then((reviews) => res.status(200).send({ reviews }))
@@ -89,3 +97,4 @@ exports.removeReviewByID = (req, res, next) => {
 };
 
   
+

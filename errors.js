@@ -1,7 +1,14 @@
 handlePostgresErrors = (err, req, res, next) => {
     if (err.code === '22P02') {
-        response.status(400).send({msg: 'Bad request'})
-    } else {
+        res.status(400).send({msg: 'Bad request'})
+    } else if (err.code === '23503') {
+       if (err.detail && err.detail.includes('stores')) {
+       res.status(404).send({msg: "Error - store not found"})
+       } else if (err.detail && err.detail.includes('users')) {
+        res.status(404).send({msg: "Error - user not found"})
+       }
+    }
+    else {
         next(err)
     }
 }

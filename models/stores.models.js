@@ -10,7 +10,10 @@ const fetchAllStores = () => {
 const fetchStoreById = (store_id) => {
     return db.query(`SELECT stores.store_id, stores.store_name, stores.type, stores.lat, stores.lon FROM stores WHERE stores.store_id = $1`, [store_id])
     .then(({rows}) => {
-        const store=rows[0]
+        if (rows.length === 0) {
+            return Promise.reject({status: 404, msg: "Error - store not found"})
+        }
+        const store = rows[0]
         return store
     })
 }

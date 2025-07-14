@@ -153,30 +153,104 @@ describe("GET /api/users/:uid/reviews", () => {
         });
       });
   });
+  test("200: Responds with an empty array if a user has made no reviews", () => {
+    const uid = 5
+    return request(app)
+    .get(`/api/users/${uid}/reviews`)
+    .expect(200)
+    .then(({body}) => {
+      expect(body).toEqual({'reviews': []})
+    })
+  })
 });
 
 describe("Postgres errors", () => {
-  test("400: Responds with 'bad request' when uid contains invalid characters", () => {
-    return request(app)
-      .get("/api/users/uid!")
-      .expect(400)
-      .then(({ body }) => {
-        expect(body.msg).toBe("Error - bad request: invalid uid");
-      });
-  });
-});
+test("POST 404: Responds with foreign key violation, when the store_id within the review doesn't exist in the store database", () => {
+const nonExistentStore = "asjdnasd"
+
+    const attemptedReview = {
+    review_id: 8,
+    fruit: "Lime",
+    body: "Comment",
+    rating: "1",
+    store_id: nonExistentStore,
+    uid: "2",
+    published: "2025-11-16",
+  }
+
+  return request(app)
+  .post("/api/reviews")
+  .send(attemptedReview)
+  .expect(404)
+  .then(({body}) => {
+    expect(body.msg).toBe("Error - store not found")
+  })
+})
+
+test("POST 404: Responds with foreign key violation, when the uid within the review doesn't exist in the user database", () => {
+  const nonExistentUser = "4hbkjgbkb4545"
+
+      const attemptedReview = {
+    review_id: 8,
+    fruit: "Lime",
+    body: "Comment",
+    rating: "1",
+    store_id: "3",
+    uid: nonExistentUser,
+    published: "2025-11-16",
+  }
+
+  return request(app)
+  .post("/api/reviews")
+  .send(attemptedReview)
+  .expect(404)
+  .then(({body}) => {
+    expect(body.msg).toBe("Error - user not found")
+  })
+})
+})
 
 describe("Custom errors", () => {
+
   test("404: Responds with 'path not found' when path does not exist", () => {
     return request(app)
-      .get("/api/invalidPath")
-      .expect(404)
-      .then(({ body }) => {
-        expect(body.msg).toBe("Error - path not found");
-      });
-  });
-});
+    .get("/api/invalidPath")
+    .expect(404)
+    .then(({body}) => {
+      expect(body.msg).toBe("Error - path not found")
+    })
+  })
 
+ test("400: Responds with 'bad request' when uid contains invalid characters", () => {
+    return request(app)
+    .get("/api/users/uid!")
+    .expect(400) 
+    .then(({body}) => {
+      expect(body.msg).toBe('Error - bad request: invalid uid')
+    })
+  })
+
+  test("404: Responds with 'store not found' when a store doesn't exist within the database", () => {
+    return request(app)
+    .get("/api/stores/store_id")
+    .expect(404)
+    .then(({body}) => {
+      expect(body.msg).toBe("Error - store not found")
+    })
+  })
+
+  test("404: Responds with 'store not found' when a store doesn't exist on this path", () => {
+    const nonExistentStore = "dgfddfhdfruits"
+
+    return request(app)
+    .get(`/api/reviews/${nonExistentStore}`)
+    .expect(404)
+    .then(({body}) => {
+      expect(body.msg).toBe("Error - store not found")
+    })
+  })
+
+ 
 describe.only("PATCH /api/reviews/:review_id", () => {
   test("200: Updates the rating and body of a review", () => {
     return request(app)
@@ -201,3 +275,4 @@ describe("DELETE /api/reviews/:review_id", () => {
     return request(app).delete("/api/reviews/limebuyer").expect(400);
   });
 });
+
