@@ -15,7 +15,9 @@ exports.fetchReviewsByStoreId = (storeId) => {
         JOIN users ON reviews.uid = users.uid
         WHERE store_id = $1
         `, [storeId])
-    .then((result)=>result.rows)
+    .then((result) => 
+        { 
+            return result.rows})
 }
 
 exports.insertReview = ({ fruit, body, rating, store_id, uid }) => {
