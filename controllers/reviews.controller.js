@@ -1,10 +1,8 @@
-const {
-  fetchAllReviews,
-  fetchReviewsByStoreId,
-  insertReview,
-  patchReviewByID,
-  deleteReviewByID,
-} = require("../models/reviews.model");
+
+const { fetchAllReviews, fetchReviewsByStoreId, insertReview, patchReviewByID,
+  deleteReviewByID, } = require('../models/reviews.model')
+const { findOrCreateUserByFirebaseUid } = require('../models/users.models')
+
 
 exports.getAllReviews = (req, res, next) => {
   fetchAllReviews()
@@ -23,6 +21,26 @@ exports.getReviewsByStoreId = (req, res, next) => {
 };
 
 exports.postReview = (req, res, next) => {
+const firebaseUid = req.firebaseUid;
+    const { fruit, body, rating, store_id } = req.body;
+    console.log('received UID:', firebaseUid)
+    console.log('body',req.body)
+
+  if (!firebaseUid) {
+    return res.status(401).json({ error: "unauthorised" });
+  }
+
+  findOrCreateUserByFirebaseUid(firebaseUid)
+    .then(() => insertReview({ fruit, body, rating, store_id, uid: firebaseUid }))
+    .then((newReview) => {
+      res.status(201).send({ review: newReview });
+    })
+      .catch((err) => {
+          console.error("post reviews error:", err);
+          next(err)
+    });
+};
+
   const { fruit, body, rating, store_id, uid } = req.body;
   insertReview({ fruit, body, rating, store_id, uid })
     .then((newReview) => {
@@ -69,3 +87,5 @@ exports.removeReviewByID = (req, res, next) => {
       next(err);
     });
 };
+
+  
