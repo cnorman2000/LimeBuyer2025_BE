@@ -44,16 +44,15 @@ describe("GET /api/reviews", () => {
           expect(review).toHaveProperty("store_id");
           expect(review).toHaveProperty("uid");
         }
-          })
-          
-        })
-       test("200: Responds with an empty array when a store has no reviews", () => {
-          const store_id = 5;
-          return request(app)
-          .get(`/api/reviews/${store_id}`)
-          .expect(200)
-          .then(({body}) => {
-            expect(body).toEqual({'reviews': []}) 
+      });
+  });
+  test("200: Responds with an empty array when a store has no reviews", () => {
+    const store_id = 5;
+    return request(app)
+      .get(`/api/reviews/${store_id}`)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toEqual({ reviews: [] });
       });
        });
   });
@@ -95,53 +94,48 @@ describe("GET /api/users/:uid", () => {
       .then(({ body: { user } }) => {
         expect(user.uid).toBe("1");
         expect(user.username).toBe("LemonLover1977");
-        expect(user.avatar_url).toBe("https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg");
+        expect(user.avatar_url).toBe(
+          "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
+        );
       });
   });
 });
 
-
 describe("GET /api/stores", () => {
   test("200: Responds with an object with a key of stores and a value of all stores objects in a single array", () => {
     return request(app)
-    .get('/api/stores')
-    .expect(200)
-    .then(({body}) => {
-      const {stores} = body;
-      stores.forEach((store) => {
-        expect( typeof store.store_id).toBe('string')
-        expect(typeof store.store_name).toBe('string')
-        expect(typeof store.type).toBe('string')
-        expect(typeof store.lat).toBe('number')
-        expect(typeof store.lon).toBe('number')
-      })
-      expect(stores.length).not.toBe(0)
-    })
-  })
-})
+      .get("/api/stores")
+      .expect(200)
+      .then(({ body }) => {
+        const { stores } = body;
+        stores.forEach((store) => {
+          expect(typeof store.store_id).toBe("string");
+          expect(typeof store.store_name).toBe("string");
+          expect(typeof store.type).toBe("string");
+          expect(typeof store.lat).toBe("number");
+          expect(typeof store.lon).toBe("number");
+        });
+        expect(stores.length).not.toBe(0);
+      });
+  });
+});
 
 describe("GET /api/stores/:store_id", () => {
   test("200: Responds with an object with a key of store and the value of a store object", () => {
-    const storeId = "4"
+    const storeId = "4";
     return request(app)
-    .get(`/api/stores/${storeId}`)
-    .expect(200)
-    .then(({body}) => {
-      const {
-        store_id,
-        store_name,
-        type,
-        lat,
-        lon
-      } = body.store
-       expect(store_id).toBe("4")
-       expect(typeof store_name).toBe('string')
-       expect(typeof type).toBe('string')
-       expect(typeof lat).toBe('number')
-       expect(typeof lon).toBe('number')
-    })
-  })
-})
+      .get(`/api/stores/${storeId}`)
+      .expect(200)
+      .then(({ body }) => {
+        const { store_id, store_name, type, lat, lon } = body.store;
+        expect(store_id).toBe("4");
+        expect(typeof store_name).toBe("string");
+        expect(typeof type).toBe("string");
+        expect(typeof lat).toBe("number");
+        expect(typeof lon).toBe("number");
+      });
+  });
+});
 
 describe("GET /api/users/:uid/reviews", () => {
   test("200: Responds with all the reviews for a given user", () => {
@@ -164,21 +158,46 @@ describe("GET /api/users/:uid/reviews", () => {
 describe("Postgres errors", () => {
   test("400: Responds with 'bad request' when uid contains invalid characters", () => {
     return request(app)
-    .get("/api/users/uid!")
-    .expect(400) 
-    .then(({body}) => {
-      expect(body.msg).toBe('Error - bad request: invalid uid')
-    })
-  })
-})
+      .get("/api/users/uid!")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Error - bad request: invalid uid");
+      });
+  });
+});
 
 describe("Custom errors", () => {
   test("404: Responds with 'path not found' when path does not exist", () => {
     return request(app)
-    .get("/api/invalidPath")
-    .expect(404)
-    .then(({body}) => {
-      expect(body.msg).toBe("Error - path not found")
-    })
-  } )
-})
+      .get("/api/invalidPath")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Error - path not found");
+      });
+  });
+});
+
+describe.only("PATCH /api/reviews/:review_id", () => {
+  test("200: Updates the rating and body of a review", () => {
+    return request(app)
+      .patch("/api/reviews/1")
+      .send({ body: "This is a new review", rating: 5 })
+      .expect(200)
+      .then(({ body: updatedReview }) => {
+        console.log(body);
+        expect(updatedReview.rating).toBe(5);
+      });
+  });
+});
+
+describe("DELETE /api/reviews/:review_id", () => {
+  test("200: Deletes a review after receiving its review_id", () => {
+    return request(app).delete("/api/reviews/2").expect(200);
+  });
+  test("404: Responds 404 when review_id not found", () => {
+    return request(app).delete("/api/reviews/10").expect(404);
+  });
+  test("400: Responds with 400 bad request when invalid request is made", () => {
+    return request(app).delete("/api/reviews/limebuyer").expect(400);
+  });
+});

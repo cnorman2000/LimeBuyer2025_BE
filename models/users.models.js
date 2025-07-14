@@ -6,7 +6,7 @@ exports.selectUsers = () => {
   });
 };
 
-exports.selectUsersByID = (uid) => {
+exports.selectUsersUByID = (uid) => {
   return db
     .query("SELECT * FROM users WHERE uid = $1", [uid])
     .then(({ rows }) => {
