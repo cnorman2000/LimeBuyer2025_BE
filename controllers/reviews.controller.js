@@ -26,8 +26,6 @@ fetchStoreById(store_id)
 exports.postReview = (req, res, next) => {
 const firebaseUid = req.firebaseUid;
     const { fruit, body, rating, store_id } = req.body;
-    console.log('received UID:', firebaseUid)
-    console.log('body',req.body)
 
   if (!firebaseUid) {
     return res.status(401).json({ error: "unauthorised" });

@@ -1,5 +1,5 @@
 node_modules
 .env.*
-
+.env
 # Firebase admin key
 firebase-service-account.json
