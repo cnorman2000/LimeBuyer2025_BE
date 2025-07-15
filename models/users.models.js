@@ -6,7 +6,7 @@ exports.selectUsers = () => {
   });
 };
 
-exports.selectUsersUByID = (uid) => {
+exports.selectUsersByUID = (uid) => {
   return db
     .query("SELECT * FROM users WHERE uid = $1", [uid])
     .then(({ rows }) => {
@@ -34,9 +34,10 @@ exports.findOrCreateUserByFirebaseUid = (firebaseUid) => {
         return rows[0];
       } else {
         return db
-          .query(`INSERT INTO users (uid, username) VALUES ($1, $2) RETURNING *`, [
-            firebaseUid, `test-user-${firebaseUid.slice(0,6)}`
-          ])
+          .query(
+            `INSERT INTO users (uid, username) VALUES ($1, $2) RETURNING *`,
+            [firebaseUid, `test-user-${firebaseUid.slice(0, 6)}`]
+          )
           .then(({ rows }) => rows[0]);
       }
     });
