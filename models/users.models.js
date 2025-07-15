@@ -56,3 +56,4 @@ exports.createNewUser = (uid, username) => {
       return rows[0];
     });
 };
+

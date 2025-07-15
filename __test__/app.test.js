@@ -208,6 +208,7 @@ describe("Postgres errors", () => {
   });
 });
 
+
 describe("Custom errors", () => {
   test("404: Responds with 'path not found' when path does not exist", () => {
     return request(app)
@@ -286,3 +287,4 @@ describe.only("POST /api/users", () => {
       });
   });
 });
+

@@ -41,17 +41,13 @@ app.post("/api/users", postNewUser);
 app.get("/api/users", getUsers);
 app.get("/api/users/:uid", getUsersByUID);
 app.get("/api/users/:uid/reviews", getReviewsByUID);
-app.use(handleCustomErrors);
-app.use(handlePostgresErrors);
 
-app.use((err, req, res, next) => {
-  if (err.status && err.msg) {
-    return res.status(err.status).send({msg:err.msg})
-  }
-  
+app.use((request, response) => {
+  response.status(404).send({ msg: "Error - path not found" });
 });
 
-
+app.use(handleCustomErrors);
+app.use(handlePostgresErrors);
 
 app.use((err, req, res, next) => {
   console.error(err);

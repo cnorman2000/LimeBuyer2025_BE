@@ -1,8 +1,12 @@
-
-const { fetchAllReviews, fetchReviewsByStoreId, insertReview, patchReviewByID,
-  deleteReviewByID, } = require('../models/reviews.model')
-const { findOrCreateUserByFirebaseUid } = require('../models/users.models')
-const {fetchStoreById} = require('../models/stores.models')
+const {
+  fetchAllReviews,
+  fetchReviewsByStoreId,
+  insertReview,
+  patchReviewByID,
+  deleteReviewByID,
+} = require("../models/reviews.model");
+const { findOrCreateUserByFirebaseUid } = require("../models/users.models");
+const { fetchStoreById } = require("../models/stores.models");
 
 exports.getAllReviews = (req, res, next) => {
   fetchAllReviews()
@@ -15,32 +19,52 @@ exports.getAllReviews = (req, res, next) => {
 
 exports.getReviewsByStoreId = (req, res, next) => {
   const { store_id } = req.params;
-
-  fetchReviewsByStoreId(store_id)
+  fetchStoreById(store_id)
+    .then(() => {
+      return fetchReviewsByStoreId(store_id);
+    })
     .then((reviews) => res.status(200).send({ reviews }))
     .catch(next);
 };
-  
 
 exports.postReview = (req, res, next) => {
-const firebaseUid = req.firebaseUid;
-    const { fruit, body, rating, store_id } = req.body;
+  const firebaseUid = req.firebaseUid;
+  console.log(req.firebaseUid);
+  const { fruit, body, rating, store_id } = req.body;
 
   if (!firebaseUid) {
     return res.status(401).json({ error: "unauthorised" });
   }
-
+  if (firebaseUid && (!body || body.trim() === "")) {
+    return next({
+      status: 400,
+      msg: "Bad request - user must leave a comment",
+    });
+  }
+  if ((firebaseUid && !fruit) || fruit.trim() === "") {
+    return next({
+      status: 400,
+      msg: "Bad request - fruit selection must be specified in order to leave a comment",
+    });
+  }
+  if (firebaseUid && !rating) {
+    return next({
+      status: 400,
+      msg: "Bad request - rating must be added in order to post review",
+    });
+  }
   findOrCreateUserByFirebaseUid(firebaseUid)
-    .then(() => insertReview({ fruit, body, rating, store_id, uid: firebaseUid }))
+    .then(() =>
+      insertReview({ fruit, body, rating, store_id, uid: firebaseUid })
+    )
     .then((newReview) => {
       res.status(201).send({ review: newReview });
     })
-      .catch((err) => {
-          console.error("post reviews error:", err);
-          next(err)
+    .catch((err) => {
+      console.error("post reviews error:", err);
+      next(err);
     });
 };
-
 
 exports.patchReviewsByID = (req, res, next) => {
   const newReview = req.body;
@@ -79,6 +103,3 @@ exports.removeReviewByID = (req, res, next) => {
       next(err);
     });
 };
-
-  
-
