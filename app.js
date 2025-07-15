@@ -9,14 +9,15 @@ const {
   getUsers,
   getUsersByUID,
   getReviewsByUID,
+  postNewUser,
 } = require("./controllers/users.controller");
 const { getEndPointsJSON } = require("./controllers/api.controller");
 const express = require("express");
 const app = express();
 
-const { handleCustomErrors, handlePostgresErrors } = require('./errors')
-const firebaseAuth = require('./middleware/firebaseAuth')
-const cors = require('cors');
+const { handleCustomErrors, handlePostgresErrors } = require("./errors");
+const firebaseAuth = require("./middleware/firebaseAuth");
+const cors = require("cors");
 
 app.use(cors());
 
@@ -27,7 +28,6 @@ const {
 
 app.use(express.json());
 
-
 app.get("/api/reviews", getAllReviews);
 app.get("/api/reviews/:store_id", getReviewsByStoreId);
 app.post("/api/reviews", firebaseAuth, postReview);
@@ -35,10 +35,9 @@ app.patch("/api/reviews/:review_id", patchReviewsByID);
 app.delete("/api/reviews/:review_id", removeReviewByID);
 app.get("/api", getEndPointsJSON);
 
-
 app.get("/api/stores", getAllStores);
 app.get("/api/stores/:store_id", getStoreById);
-
+app.post("/api/users", postNewUser);
 app.get("/api/users", getUsers);
 app.get("/api/users/:uid", getUsersByUID);
 app.get("/api/users/:uid/reviews", getReviewsByUID);
