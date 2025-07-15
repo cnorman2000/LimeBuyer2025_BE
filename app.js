@@ -42,13 +42,17 @@ app.get("/api/stores/:store_id", getStoreById);
 app.get("/api/users", getUsers);
 app.get("/api/users/:uid", getUsersByUID);
 app.get("/api/users/:uid/reviews", getReviewsByUID);
-
-app.use((req, res) => {
-  res.status(404).send({ msg: "Error - path not found" });
-});
-
 app.use(handleCustomErrors);
 app.use(handlePostgresErrors);
+
+app.use((err, req, res, next) => {
+  if (err.status && err.msg) {
+    return res.status(err.status).send({msg:err.msg})
+  }
+  
+});
+
+
 
 app.use((err, req, res, next) => {
   console.error(err);
