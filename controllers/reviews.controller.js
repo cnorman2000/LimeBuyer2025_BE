@@ -14,13 +14,12 @@ exports.getAllReviews = (req, res, next) => {
 };
 
 exports.getReviewsByStoreId = (req, res, next) => {
+  const { store_id } = req.params;
 
-    const { store_id } = req.params;
-fetchStoreById(store_id)
-    .then(() => {return fetchReviewsByStoreId(store_id)})
-        .then((reviews) => res.status(200).send({ reviews }))
-    .catch(next)
-}
+  fetchReviewsByStoreId(store_id)
+    .then((reviews) => res.status(200).send({ reviews }))
+    .catch(next);
+};
   
 
 exports.postReview = (req, res, next) => {
