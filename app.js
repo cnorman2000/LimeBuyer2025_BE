@@ -9,6 +9,7 @@ const {
   getUsers,
   getUsersByUID,
   getReviewsByUID,
+  postNewUser,
 } = require("./controllers/users.controller");
 const { getEndPointsJSON } = require("./controllers/api.controller");
 const express = require("express");
@@ -36,7 +37,7 @@ app.get("/api", getEndPointsJSON);
 
 app.get("/api/stores", getAllStores);
 app.get("/api/stores/:store_id", getStoreById);
-
+app.post("/api/users", postNewUser);
 app.get("/api/users", getUsers);
 app.get("/api/users/:uid", getUsersByUID);
 app.get("/api/users/:uid/reviews", getReviewsByUID);

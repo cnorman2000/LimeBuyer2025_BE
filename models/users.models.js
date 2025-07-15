@@ -42,3 +42,18 @@ exports.findOrCreateUserByFirebaseUid = (firebaseUid) => {
       }
     });
 };
+
+exports.createNewUser = (uid, username) => {
+  const placeholder =
+    "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg";
+
+  return db
+    .query(
+      `INSERT INTO users (uid, username, avatar_url) VALUES($1, $2, $3) RETURNING *`,
+      [uid, username, placeholder]
+    )
+    .then(({ rows }) => {
+      return rows[0];
+    });
+};
+

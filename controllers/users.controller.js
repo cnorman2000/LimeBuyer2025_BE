@@ -3,6 +3,7 @@ const {
   selectUsers,
   selectUsersByUID,
   selectReviewsByUID,
+  createNewUser,
 } = require("../models/users.models");
 
 exports.getUsers = (req, res, next) => {
@@ -36,6 +37,19 @@ exports.getReviewsByUID = (req, res, next) => {
     .then((reviews) => {
       console.log(reviews);
       res.status(200).send({ reviews: reviews });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.postNewUser = (req, res, next) => {
+  const { uid, username } = req.body;
+
+  createNewUser(uid, username)
+    .then((newUser) => {
+      console.log(newUser);
+      res.status(201).send({ user: newUser });
     })
     .catch((err) => {
       next(err);

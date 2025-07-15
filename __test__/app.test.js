@@ -162,6 +162,53 @@ describe("GET /api/users/:uid/reviews", () => {
   });
 });
 
+describe("Postgres errors", () => {
+  test("POST 404: Responds with foreign key violation, when the store_id within the review doesn't exist in the store database", () => {
+    const nonExistentStore = "asjdnasd";
+
+    const attemptedReview = {
+      review_id: 8,
+      fruit: "Lime",
+      body: "Comment",
+      rating: "1",
+      store_id: nonExistentStore,
+      uid: "2",
+      published: "2025-11-16",
+    };
+
+    return request(app)
+      .post("/api/reviews")
+      .send(attemptedReview)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Error - store not found");
+      });
+  });
+
+  test("POST 404: Responds with foreign key violation, when the uid within the review doesn't exist in the user database", () => {
+    const nonExistentUser = "4hbkjgbkb4545";
+
+    const attemptedReview = {
+      review_id: 8,
+      fruit: "Lime",
+      body: "Comment",
+      rating: "1",
+      store_id: "3",
+      uid: nonExistentUser,
+      published: "2025-11-16",
+    };
+
+    return request(app)
+      .post("/api/reviews")
+      .send(attemptedReview)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Error - user not found");
+      });
+  });
+});
+
+
 describe("Custom errors", () => {
   test("404: Responds with 'path not found' when path does not exist", () => {
     return request(app)
@@ -209,6 +256,7 @@ describe("Custom errors", () => {
         .expect(200)
         .then(({ body: updatedReview }) => {
           expect(updatedReview.review.rating).toBe(5);
+          expect(updatedReview.review.body).toBe("This is a new review");
         });
     });
   });
@@ -225,3 +273,18 @@ describe("Custom errors", () => {
     });
   });
 });
+
+describe.only("POST /api/users", () => {
+  test("201: Posts a new user", () => {
+    return request(app)
+      .post("/api/users")
+      .send({ uid: "938402384ABC", username: "TestUserName" })
+      .expect(201)
+      .then(({ body: newUser }) => {
+        console.log(newUser);
+        expect(newUser.user.uid).toBe("938402384ABC");
+        expect(newUser.user.username).toBe("TestUserName");
+      });
+  });
+});
+
