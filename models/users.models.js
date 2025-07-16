@@ -57,3 +57,13 @@ exports.createNewUser = (uid, username) => {
     });
 };
 
+exports.changeUsername = (uid, newUsername) => {
+  return db
+    .query(`UPDATE users SET username = $2 where uid = $1 RETURNING *`, [
+      uid,
+      newUsername,
+    ])
+    .then(({ rows }) => {
+      return rows[0];
+    });
+};

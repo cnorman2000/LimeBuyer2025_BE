@@ -10,6 +10,8 @@ const {
   getUsersByUID,
   getReviewsByUID,
   postNewUser,
+
+  patchUsername,
 } = require("./controllers/users.controller");
 const { getEndPointsJSON } = require("./controllers/api.controller");
 const express = require("express");
@@ -37,10 +39,12 @@ app.get("/api", getEndPointsJSON);
 
 app.get("/api/stores", getAllStores);
 app.get("/api/stores/:store_id", getStoreById);
-app.post("/api/users", postNewUser);
+
 app.get("/api/users", getUsers);
 app.get("/api/users/:uid", getUsersByUID);
 app.get("/api/users/:uid/reviews", getReviewsByUID);
+app.post("/api/users", postNewUser);
+app.patch("/api/users/:user_id", patchUsername);
 
 app.use((request, response) => {
   response.status(404).send({ msg: "Error - path not found" });

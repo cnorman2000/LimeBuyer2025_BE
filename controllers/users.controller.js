@@ -4,6 +4,7 @@ const {
   selectUsersByUID,
   selectReviewsByUID,
   createNewUser,
+  changeUsername,
 } = require("../models/users.models");
 
 exports.getUsers = (req, res, next) => {
@@ -50,6 +51,34 @@ exports.postNewUser = (req, res, next) => {
     .then((newUser) => {
       console.log(newUser);
       res.status(201).send({ user: newUser });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.patchUsername = (req, res, next) => {
+  const { uid } = req.params;
+  const newUsername = req.body;
+  console.log(uid);
+  console.log(newUsername);
+  changeUsername(uid, newUsername)
+    .then((updatedUsername) => {
+      res.status(200).send({ username: updatedUsername });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.patchAvatar = (req, res, next) => {
+  const { uid } = req.params;
+  const newAvatar = req.body;
+  console.log(uid);
+  console.log(newAvatar);
+  changeUsername(uid, newAvatar)
+    .then((updatedAvatar) => {
+      res.status(200).send({ username: updatedAvatar });
     })
     .catch((err) => {
       next(err);
