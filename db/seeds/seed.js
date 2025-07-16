@@ -15,7 +15,7 @@ const seed = ({ userData, storeData, reviewData }) => {
       return db.query(`CREATE TABLE
         users(
         uid VARCHAR(100) PRIMARY KEY,
-        username VARCHAR(300) NOT NULL UNIQUE,
+        username VARCHAR(300) NOT NULL,
         avatar_url VARCHAR(1000))`);
     })
 
@@ -42,11 +42,9 @@ const seed = ({ userData, storeData, reviewData }) => {
     })
 
     .then(() => {
-      const formattedUsersValue = userData.map(
-        ({ uid, username, avatar_url }) => {
-          return [uid, username, avatar_url];
-        }
-      );
+      const formattedUsersValue = userData.map(({ uid, username, avatar_url }) => {
+        return [uid, username, avatar_url];
+      });
 
       const sqlUsersString = format(
         `INSERT INTO users(uid, username, avatar_url) VALUES %L RETURNING *`,
@@ -56,11 +54,9 @@ const seed = ({ userData, storeData, reviewData }) => {
     })
 
     .then(() => {
-      const formattedStoresValue = storeData.map(
-        ({ store_id, store_name, type, lat, lon }) => {
-          return [store_id, store_name, type, lat, lon];
-        }
-      );
+      const formattedStoresValue = storeData.map(({ store_id, store_name, type, lat, lon }) => {
+        return [store_id, store_name, type, lat, lon];
+      });
 
       const sqlStoresString = format(
         `INSERT INTO stores(store_id, store_name, type, lat, lon) VALUES %L RETURNING *`,
@@ -70,11 +66,9 @@ const seed = ({ userData, storeData, reviewData }) => {
     })
 
     .then(() => {
-      const formattedReviewsValue = reviewData.map(
-        ({ fruit, body, rating, store_id, uid }) => {
-          return [fruit, body, rating, store_id, uid];
-        }
-      );
+      const formattedReviewsValue = reviewData.map(({ fruit, body, rating, store_id, uid }) => {
+        return [fruit, body, rating, store_id, uid];
+      });
 
       const sqlReviewsString = format(
         `INSERT INTO reviews(fruit, body, rating, store_id, uid) VALUES %L RETURNING *`,
