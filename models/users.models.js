@@ -44,8 +44,7 @@ exports.findOrCreateUserByFirebaseUid = (firebaseUid) => {
 };
 
 exports.createNewUser = (uid, username) => {
-  const placeholder =
-    "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg";
+  const placeholder = "https://api.dicebear.com/9.x/thumbs/svg?seed=Eden";
 
   return db
     .query(
