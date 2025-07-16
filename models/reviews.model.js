@@ -43,15 +43,25 @@ exports.patchReviewByID = (review_id, new_body, new_rating) => {
     });
 };
 
-exports.deleteReviewByID = (review_id) => {
+exports.deleteReviewByID = (review_id, uid) => {
+ 
+  
   return db
-    .query(`DELETE FROM reviews WHERE review_id = $1 RETURNING *`, [review_id])
+    .query(`SELECT uid FROM reviews WHERE review_id = $1`, [review_id])
     .then(({ rows }) => {
-      if (rows.length === 0)
-        return Promise.reject({
-          status: 404,
-          msg: "Review not found",
-        });
-      return;
+      if (rows.length === 0) {
+        return Promise.reject({ status: 404, msg: "Review not found" });
+      }
+      if (String(rows[0].uid) !== String(uid)) {
+        return Promise.reject({ status: 403, msg: "Forbidden" });
+      }
+
+      return db.query(`DELETE FROM reviews WHERE review_id = $1`, [review_id]);
     });
+};
+
+exports.findReviewByID = (review_id) => {
+  return db
+    .query(`SELECT * FROM reviews WHERE review_id = $1`, [review_id])
+    .then(({ rows }) => rows[0]);
 };
