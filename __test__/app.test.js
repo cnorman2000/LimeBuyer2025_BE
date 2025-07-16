@@ -228,7 +228,6 @@ describe("Custom errors", () => {
 });
 
 describe("POST /api/users", () => {
-describe("POST /api/users", () => {
   test("201: Posts a new user", () => {
     return request(app)
       .post("/api/users")
@@ -241,14 +240,16 @@ describe("POST /api/users", () => {
       });
   });
 });
+
 describe.only("PATCH /api/users/:uid", () => {
   test("200: Patches a user's username", () => {
     return request(app)
       .patch("/api/users/4")
-      .send({ newUsername: "testUsername" })
+      .send({ username: "testUsername", avatar_url: "testAvatar" })
       .expect(200)
-      .then(({ body: updatedUsername }) => {
-        expect(updatedUsername.newUsername).toBe("testUsername");
+      .then(({ body: updatedUser }) => {
+        expect(updatedUser.user.username).toBe("testUsername");
+        expect(updatedUser.user.avatar_url).toBe("testAvatar");
       });
   });
 });
