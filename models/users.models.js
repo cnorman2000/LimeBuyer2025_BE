@@ -79,4 +79,3 @@ exports.changeUser = (uid, newUsername, newAvatar) => {
       return rows[0];
     });
 };
-
