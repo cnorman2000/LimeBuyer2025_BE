@@ -234,14 +234,24 @@ describe("PATCH /api/reviews/:review_id", () => {
 
   describe("DELETE /api/reviews/:review_id", () => {
     test("200: Deletes a review after receiving its review_id", () => {
-      return request(app).delete("/api/reviews/2").expect(200);
+      return request(app)
+        .delete("/api/reviews/2")
+        .send({uid:"1"})
+        .expect(204);
     });
     test("404: Responds 404 when review_id not found", () => {
-      return request(app).delete("/api/reviews/10").expect(404);
-    });
-    test("400: Responds with 400 bad request when invalid request is made", () => {
-      return request(app).delete("/api/reviews/limebuyer").expect(400);
-    });
+  return request(app)
+    .delete("/api/reviews/9999")
+    .send({ uid: "1" }) 
+    .expect(404);
+});
+
+test("400: Responds with 400 bad request when invalid request is made", () => {
+  return request(app)
+    .delete("/api/reviews/limebuyer")
+    .send({ uid: "1" })  
+    .expect(400);
+});
   });
 });
 

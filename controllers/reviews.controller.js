@@ -4,6 +4,7 @@ const {
   insertReview,
   patchReviewByID,
   deleteReviewByID,
+  findReviewByID,
 } = require("../models/reviews.model");
 const { findOrCreateUserByFirebaseUid } = require("../models/users.models");
 const { fetchStoreById } = require("../models/stores.models");
@@ -29,7 +30,6 @@ exports.getReviewsByStoreId = (req, res, next) => {
 
 exports.postReview = (req, res, next) => {
   const firebaseUid = req.firebaseUid;
-  console.log(req.firebaseUid);
   const { fruit, body, rating, store_id } = req.body;
 
   if (!firebaseUid) {
@@ -91,15 +91,30 @@ exports.patchReviewsByID = (req, res, next) => {
 
 exports.removeReviewByID = (req, res, next) => {
   const { review_id } = req.params;
+  const { uid } = req.body
+  console.log("uid removal:", uid)
   const numID = Number(review_id);
   if (!Number.isInteger(numID)) {
     return Promise.reject({ status: 400, msg: "Invalid review_id" });
   }
-  deleteReviewByID(review_id)
+  findReviewByID(review_id)
+    .then((review) => {
+      if (!review) {
+        return Promise.reject({ status: 404, msg: 'review not found' });
+      }
+      if (review.uid !== uid) {
+        return Promise.reject({ status: 403, msg: "forbidden: not your review" });
+      }
+      return deleteReviewByID(review_id, uid);
+    })
     .then(() => {
-      res.status(200).send();
+      res.status(204).send();
     })
     .catch((err) => {
-      next(err);
-    });
+      if (err.status && err.msg) {
+        res.status(err.status).send({ msg: err.msg });
+      } else {
+        next(err)
+    }
+  })
 };

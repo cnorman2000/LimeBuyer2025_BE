@@ -38,7 +38,6 @@ exports.getReviewsByUID = (req, res, next) => {
   const { uid } = req.params;
   selectReviewsByUID(uid)
     .then((reviews) => {
-      console.log(reviews);
       res.status(200).send({ reviews: reviews });
     })
     .catch((err) => {
