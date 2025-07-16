@@ -240,3 +240,16 @@ describe("POST /api/users", () => {
       });
   });
 });
+
+describe.only("PATCH /api/users/:uid", () => {
+  test("200: Patches a user's username", () => {
+    return request(app)
+      .patch("/api/users/4")
+      .send({ username: "testUsername", avatar_url: "testAvatar" })
+      .expect(200)
+      .then(({ body: updatedUser }) => {
+        expect(updatedUser.user.username).toBe("testUsername");
+        expect(updatedUser.user.avatar_url).toBe("testAvatar");
+      });
+  });
+});
