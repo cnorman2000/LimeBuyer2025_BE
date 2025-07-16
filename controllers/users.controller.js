@@ -1,9 +1,11 @@
 const { request } = require("../app");
+const { find } = require("../db/data/test-data/users");
 const {
   selectUsers,
   selectUsersByUID,
   selectReviewsByUID,
   createNewUser,
+  findOrCreateUserByFirebaseUid,
   changeUser,
 } = require("../models/users.models");
 
@@ -47,9 +49,8 @@ exports.getReviewsByUID = (req, res, next) => {
 exports.postNewUser = (req, res, next) => {
   const { uid, username } = req.body;
 
-  createNewUser(uid, username)
+  findOrCreateUserByFirebaseUid(uid, username)
     .then((newUser) => {
-      console.log(newUser);
       res.status(201).send({ user: newUser });
     })
     .catch((err) => {
