@@ -99,7 +99,7 @@ describe("GET /api/users/:uid", () => {
         expect(user.uid).toBe("1");
         expect(user.username).toBe("LemonLover1977");
         expect(user.avatar_url).toBe(
-          "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
+          "https://api.dicebear.com/9.x/thumbs/svg?seed=Eden"
         );
       });
   });
@@ -247,8 +247,7 @@ describe("PATCH /api/reviews/:review_id", () => {
 
 describe("POST /api/users", () => {
   test("201: Posts a new user", () => {
-    const defaultAvatar =
-      "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg";
+    const defaultAvatar = "https://api.dicebear.com/9.x/thumbs/svg?seed=Eden";
 
     return request(app)
       .post("/api/users")
@@ -263,7 +262,7 @@ describe("POST /api/users", () => {
   });
 });
 
-describe.only("PATCH /api/users/:uid", () => {
+describe("PATCH /api/users/:uid", () => {
   test("200: Patches a user's username", () => {
     return request(app)
       .patch("/api/users/4")
