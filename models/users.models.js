@@ -26,34 +26,32 @@ exports.selectReviewsByUID = (uid) => {
     .then((result) => result.rows);
 };
 
-exports.findOrCreateUserByFirebaseUid = (firebaseUid) => {
+exports.findOrCreateUserByFirebaseUid = (
+  firebaseUid,
+  preferredUsername = null
+) => {
   return db
     .query(`SELECT * from users WHERE uid = $1`, [firebaseUid])
     .then(({ rows }) => {
       if (rows.length > 0) {
         return rows[0];
       } else {
+        const newUsername =
+          preferredUsername || `user-${firebaseUid.slice(0, 6)}`;
+        const defaultAvatar =
+          "https://api.dicebear.com/9.x/thumbs/svg?seed=Eden";
+
         return db
           .query(
-            `INSERT INTO users (uid, username) VALUES ($1, $2) RETURNING *`,
-            [firebaseUid, `test-user-${firebaseUid.slice(0, 6)}`]
+            `INSERT INTO users (uid, username, avatar_url) VALUES ($1, $2, $3) RETURNING *`,
+            [firebaseUid, newUsername, defaultAvatar]
           )
           .then(({ rows }) => rows[0]);
       }
+    })
+    .catch((err) => {
+      if (err.code === "23505") {
+        return Promise.reject({ status: 403, msg: "Username already in use" });
+      }
     });
 };
-
-exports.createNewUser = (uid, username) => {
-  const placeholder =
-    "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg";
-
-  return db
-    .query(
-      `INSERT INTO users (uid, username, avatar_url) VALUES($1, $2, $3) RETURNING *`,
-      [uid, username, placeholder]
-    )
-    .then(({ rows }) => {
-      return rows[0];
-    });
-};
-

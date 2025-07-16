@@ -26,6 +26,9 @@ describe("GET /api/reviews", () => {
           expect(review).toHaveProperty("rating");
           expect(review).toHaveProperty("store_id");
           expect(review).toHaveProperty("uid");
+
+          expect(review).toHaveProperty("username");
+          expect(review).toHaveProperty("avatar_url");
         }
       });
   });
@@ -43,6 +46,9 @@ describe("GET /api/reviews", () => {
           expect(review).toHaveProperty("rating");
           expect(review).toHaveProperty("store_id");
           expect(review).toHaveProperty("uid");
+
+          expect(review).toHaveProperty("username");
+          expect(review).toHaveProperty("avatar_url");
         }
       });
   });
@@ -200,18 +206,30 @@ describe("Custom errors", () => {
         expect(body.msg).toBe("Error - store not found");
       });
   });
+  test("403: Responds with 'username already in use' when a new user tries to set a duplicate username", () => {
+    const newUID = "hdfbsdbfgk34";
+    const attemptedUsername = "FruitWizard";
 
-  describe("PATCH /api/reviews/:review_id", () => {
-    test("200: Updates the rating and body of a review", () => {
-      return request(app)
-        .patch("/api/reviews/1")
-        .send({ body: "This is a new review", rating: 5 })
-        .expect(200)
-        .then(({ body: updatedReview }) => {
-          expect(updatedReview.review.rating).toBe(5);
-          expect(updatedReview.review.body).toBe("This is a new review");
-        });
-    });
+    return request(app)
+      .post("/api/users")
+      .send({ uid: newUID, username: attemptedUsername })
+      .expect(403)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Username already in use");
+      });
+  });
+});
+
+describe("PATCH /api/reviews/:review_id", () => {
+  test("200: Updates the rating and body of a review", () => {
+    return request(app)
+      .patch("/api/reviews/1")
+      .send({ body: "This is a new review", rating: 5 })
+      .expect(200)
+      .then(({ body: updatedReview }) => {
+        expect(updatedReview.review.rating).toBe(5);
+        expect(updatedReview.review.body).toBe("This is a new review");
+      });
   });
 
   describe("DELETE /api/reviews/:review_id", () => {
@@ -229,6 +247,9 @@ describe("Custom errors", () => {
 
 describe("POST /api/users", () => {
   test("201: Posts a new user", () => {
+    const defaultAvatar =
+      "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg";
+
     return request(app)
       .post("/api/users")
       .send({ uid: "938402384ABC", username: "TestUserName" })
@@ -237,6 +258,7 @@ describe("POST /api/users", () => {
         console.log(newUser);
         expect(newUser.user.uid).toBe("938402384ABC");
         expect(newUser.user.username).toBe("TestUserName");
+        expect(newUser.user.avatar_url).toBe(defaultAvatar);
       });
   });
 });
