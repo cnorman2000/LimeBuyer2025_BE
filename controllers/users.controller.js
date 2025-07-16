@@ -6,6 +6,7 @@ const {
   selectReviewsByUID,
   createNewUser,
   findOrCreateUserByFirebaseUid,
+  changeUser,
 } = require("../models/users.models");
 
 exports.getUsers = (req, res, next) => {
@@ -51,6 +52,23 @@ exports.postNewUser = (req, res, next) => {
   findOrCreateUserByFirebaseUid(uid, username)
     .then((newUser) => {
       res.status(201).send({ user: newUser });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.patchUser = (req, res, next) => {
+  const { uid } = req.params;
+
+  const newUserInfo = req.body;
+
+  const newUsername = newUserInfo.username;
+  const newAvatar = newUserInfo.avatar_url;
+
+  changeUser(uid, newUsername, newAvatar)
+    .then((updatedUser) => {
+      res.status(200).send({ user: updatedUser });
     })
     .catch((err) => {
       next(err);
