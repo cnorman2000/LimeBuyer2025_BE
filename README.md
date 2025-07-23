@@ -1,4 +1,4 @@
-# NC News
+# LimeBuyer - Backend
 
 A RESTful API for a map based citrus reviewing platform. Users can:
 
